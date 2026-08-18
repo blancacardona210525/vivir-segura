@@ -22,6 +22,40 @@
   $$("[data-target]").forEach(btn => btn.addEventListener("click", () => showPanel(btn.dataset.target)));
   $$("[data-go]").forEach(btn => btn.addEventListener("click", () => showPanel(btn.dataset.go)));
 
+  const topicSearch = $("#topicSearch");
+  const topicCategory = $("#topicCategory");
+  const learningCards = $$(".learning-topic");
+  const learningEmpty = $("#learningEmpty");
+
+  function normalizeText(value) {
+    return String(value || "")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      .trim();
+  }
+
+  function filterLearningTopics() {
+    if (!topicSearch || !topicCategory) return;
+    const term = normalizeText(topicSearch.value);
+    const category = topicCategory.value;
+    let visible = 0;
+
+    learningCards.forEach(card => {
+      const searchable = normalizeText(`${card.dataset.search || ""} ${card.textContent || ""}`);
+      const matchesTerm = !term || searchable.includes(term);
+      const matchesCategory = category === "all" || card.dataset.category === category;
+      const show = matchesTerm && matchesCategory;
+      card.classList.toggle("hidden", !show);
+      if (show) visible += 1;
+    });
+
+    if (learningEmpty) learningEmpty.classList.toggle("hidden", visible !== 0);
+  }
+
+  if (topicSearch) topicSearch.addEventListener("input", filterLearningTopics);
+  if (topicCategory) topicCategory.addEventListener("change", filterLearningTopics);
+
   $("#quickExit").addEventListener("click", () => {
     document.title = "Google";
     window.location.replace("https://www.google.com/");

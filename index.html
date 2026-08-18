@@ -48,8 +48,8 @@
     <section class="hero">
       <div class="hero-copy">
         <span class="eyebrow">PROTOTIPO • HONDURAS</span>
-        <h1>Información clara para reconocer la violencia y buscar apoyo.</h1>
-        <p>Consulta señales, valora riesgos, prepara un plan de seguridad y organiza información para solicitar ayuda o presentar una denuncia.</p>
+        <h1>Información, educación y herramientas para reconocer la violencia y buscar apoyo.</h1>
+        <p>Aprende sobre las violencias contra las mujeres, consulta señales, valora riesgos, prepara un plan de seguridad y organiza información para solicitar ayuda o presentar una denuncia.</p>
         <div class="hero-actions">
           <button class="primary-btn" data-go="riesgo" type="button">Evaluar mi situación</button>
           <button class="ghost-btn" data-go="ayuda" type="button">Buscar ayuda</button>
@@ -73,6 +73,7 @@
 
     <nav class="tabs" aria-label="Secciones principales">
       <button class="tab active" data-target="inicio" type="button">Inicio</button>
+      <button class="tab" data-target="aprender" type="button">Aprender</button>
       <button class="tab" data-target="identificar" type="button">Identificar</button>
       <button class="tab" data-target="riesgo" type="button">Riesgo</button>
       <button class="tab" data-target="plan" type="button">Plan de seguridad</button>
@@ -88,6 +89,13 @@
       </div>
 
       <div class="dashboard-grid">
+        <article class="action-card learning-feature">
+          <div class="round-icon">A</div>
+          <h3>Comprender la violencia</h3>
+          <p>Conoce conceptos, consentimiento, mitos, impactos, violencia digital, prevención, marco legal y mucho más.</p>
+          <button class="text-btn" data-go="aprender" type="button">Abrir centro de aprendizaje →</button>
+        </article>
+
         <article class="action-card">
           <div class="round-icon">?</div>
           <h3>¿Esto puede ser violencia?</h3>
@@ -142,6 +150,418 @@
           <span>✓ Sin sessionStorage</span>
           <span>✓ Sin cuenta de usuario</span>
           <span>✓ Formularios temporales</span>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="aprender" class="panel" tabindex="-1">
+      <div class="section-heading">
+        <span class="eyebrow">CENTRO DE APRENDIZAJE</span>
+        <h2>Comprender la violencia contra las mujeres</h2>
+        <p>Información educativa para reconocer cómo se manifiesta la violencia, por qué constituye una vulneración de derechos y qué conceptos pueden ayudar a identificarla y prevenirla.</p>
+      </div>
+
+      <div class="learning-stats">
+        <article>
+          <strong>≈ 1 de cada 3</strong>
+          <span>mujeres en el mundo ha vivido violencia física o sexual de pareja, violencia sexual fuera de la pareja, o ambas, a lo largo de su vida, según estimaciones globales de la OMS publicadas para 2023.</span>
+        </article>
+        <article>
+          <strong>Derechos humanos</strong>
+          <span>La violencia contra las mujeres es un problema de salud pública, igualdad de género y derechos humanos.</span>
+        </article>
+        <article>
+          <strong>Desigualdad de género</strong>
+          <span>La OMS identifica la desigualdad de género como una causa estructural de la violencia contra las mujeres y niñas.</span>
+        </article>
+      </div>
+
+      <div class="learning-toolbar">
+        <label class="search-label">Buscar un tema
+          <input id="topicSearch" type="search" placeholder="Ej.: consentimiento, violencia digital, mitos..." autocomplete="off">
+        </label>
+        <label class="search-label">Filtrar por categoría
+          <select id="topicCategory">
+            <option value="all">Todos los temas</option>
+            <option value="conceptos">Conceptos básicos</option>
+            <option value="formas">Formas de violencia</option>
+            <option value="seguridad">Seguridad y apoyo</option>
+            <option value="prevencion">Prevención</option>
+            <option value="derechos">Derechos y marco legal</option>
+          </select>
+        </label>
+      </div>
+
+      <div id="learningTopics" class="learning-topics">
+
+        <article class="learning-topic" data-category="conceptos" data-search="qué es violencia contra las mujeres género derechos humanos definición poder">
+          <div class="topic-number">01</div>
+          <div class="topic-content">
+            <span class="tag">Conceptos básicos</span>
+            <h3>¿Qué es la violencia contra las mujeres?</h3>
+            <p>Comprende actos o conductas basadas en género que causan o pueden causar daño físico, sexual o psicológico, además de amenazas, coerción o privación arbitraria de libertad. Puede ocurrir en espacios privados o públicos.</p>
+            <details>
+              <summary>Leer más</summary>
+              <div>
+                <p>La violencia no se limita a los golpes. También puede aparecer mediante control, aislamiento, intimidación, humillación, coerción sexual, control económico, destrucción de bienes, persecución o abuso mediante tecnologías.</p>
+                <p>La OMS señala que la violencia de pareja incluye agresión física, coerción sexual, abuso psicológico y conductas de control por parte de una pareja o expareja.</p>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <article class="learning-topic" data-category="conceptos" data-search="género desigualdad poder control autonomía discriminación roles estereotipos">
+          <div class="topic-number">02</div>
+          <div class="topic-content">
+            <span class="tag">Conceptos básicos</span>
+            <h3>Desigualdad de poder, género y control</h3>
+            <p>Muchas formas de violencia buscan restringir la autonomía de una mujer: decidir con quién se relaciona, cómo usa su dinero, dónde trabaja, cómo se viste, cuándo sale o qué decisiones toma sobre su cuerpo.</p>
+            <details>
+              <summary>¿Por qué se habla de desigualdad de género?</summary>
+              <div>
+                <p>La violencia no se explica por una única causa. Intervienen factores individuales, familiares, comunitarios y sociales. Sin embargo, la OMS identifica la desigualdad de género y las normas que legitiman privilegios, subordinación o control sobre las mujeres como factores estructurales centrales.</p>
+                <p>Los celos, el consumo de alcohol, el desempleo o los conflictos de pareja no justifican la violencia ni trasladan la responsabilidad a la mujer que la vive.</p>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <article class="learning-topic" data-category="conceptos" data-search="consentimiento sexual sí no coerción libre informado reversible específico miedo intoxicación inconsciente">
+          <div class="topic-number">03</div>
+          <div class="topic-content">
+            <span class="tag">Consentimiento</span>
+            <h3>Consentimiento: debe existir una decisión libre</h3>
+            <p>Para fines educativos, el consentimiento sexual supone una participación libre y activa. No debe obtenerse mediante presión, miedo, amenazas, manipulación o abuso de poder.</p>
+            <details>
+              <summary>Principios importantes</summary>
+              <div class="mini-grid">
+                <div><strong>Libre</strong><p>No surge de amenazas, presión, miedo o coerción.</p></div>
+                <div><strong>Activo</strong><p>No basta interpretar el silencio o la falta de resistencia como consentimiento.</p></div>
+                <div><strong>Específico</strong><p>Aceptar una actividad no significa aceptar otras.</p></div>
+                <div><strong>Puede retirarse</strong><p>Una persona puede cambiar de decisión durante una interacción.</p></div>
+              </div>
+              <p>Haber consentido antes, mantener una relación de pareja o matrimonio, recibir regalos o acudir voluntariamente a un lugar no equivale por sí mismo a consentir una actividad sexual. Una persona inconsciente o que no puede comprender o decidir libremente no puede dar un consentimiento válido.</p>
+              <p class="field-help">Las reglas jurídicas aplicables a niñas, niños y adolescentes dependen de la legislación vigente y requieren protección reforzada.</p>
+            </details>
+          </div>
+        </article>
+
+        <article class="learning-topic" data-category="conceptos" data-search="ciclo violencia tensión agresión reconciliación luna miel separación volver relación">
+          <div class="topic-number">04</div>
+          <div class="topic-content">
+            <span class="tag">Dinámicas</span>
+            <h3>La violencia puede cambiar de intensidad</h3>
+            <p>En algunas relaciones aparecen períodos de tensión, episodios de agresión y etapas posteriores de disculpas, promesas o aparente calma. No todas las situaciones siguen el mismo patrón.</p>
+            <details>
+              <summary>¿Por qué es importante entender esto?</summary>
+              <div>
+                <p>Los períodos de calma no necesariamente significan que el riesgo terminó. También pueden dificultar reconocer la violencia o tomar decisiones.</p>
+                <p>Una mujer puede permanecer o regresar a una relación por miedo, amenazas, dependencia económica, hijas o hijos, aislamiento, falta de vivienda, barreras territoriales, presión familiar, esperanza de cambio u otras razones. Permanecer no significa aceptar la violencia.</p>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <article class="learning-topic" data-category="formas" data-search="violencia sexual violación coerción contacto no deseado anticoncepción protección matrimonio pareja">
+          <div class="topic-number">05</div>
+          <div class="topic-content">
+            <span class="tag">Violencia sexual</span>
+            <h3>La violencia sexual puede ocurrir dentro o fuera de una relación</h3>
+            <p>Incluye actos sexuales, intentos o contactos dirigidos contra la sexualidad de una persona mediante coerción, independientemente de la relación con quien ejerce la violencia.</p>
+            <details>
+              <summary>Ejemplos que ayudan a reconocerla</summary>
+              <div>
+                <ul>
+                  <li>Forzar o presionar para mantener relaciones sexuales.</li>
+                  <li>Continuar una actividad sexual después de que la persona desea detenerla.</li>
+                  <li>Realizar contactos sexuales no deseados.</li>
+                  <li>Usar amenazas, chantaje, miedo, drogas o abuso de poder para obtener actos sexuales.</li>
+                  <li>Obstaculizar decisiones reproductivas o de protección sexual como forma de control.</li>
+                </ul>
+                <p>En Honduras, la Ley Contra la Violencia Doméstica reconoce la violencia sexual dentro de las relaciones comprendidas por la ley.</p>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <article class="learning-topic" data-category="formas" data-search="violencia psicológica emocional humillación insultos aislamiento gaslighting amenazas control autoestima">
+          <div class="topic-number">06</div>
+          <div class="topic-content">
+            <span class="tag">Violencia psicológica</span>
+            <h3>El daño emocional y el control también son violencia</h3>
+            <p>Puede expresarse mediante intimidación, manipulación, amenazas, humillación, aislamiento, vigilancia, insultos, chantaje, ridiculización o control de decisiones.</p>
+            <details>
+              <summary>Señales frecuentes</summary>
+              <div>
+                <ul>
+                  <li>Hacerte dudar constantemente de tu percepción o memoria.</li>
+                  <li>Desvalorizarte frente a otras personas.</li>
+                  <li>Amenazar con abandonar, lastimar o quitar a hijas/os para controlar decisiones.</li>
+                  <li>Impedir o castigar el contacto con amistades y familiares.</li>
+                  <li>Vigilar horarios, llamadas, ubicación o desplazamientos.</li>
+                </ul>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <article class="learning-topic" data-category="formas" data-search="violencia económica patrimonial dinero bienes documentos trabajo empleo deuda alimentos ingresos propiedad">
+          <div class="topic-number">07</div>
+          <div class="topic-content">
+            <span class="tag">Económica y patrimonial</span>
+            <h3>El dinero y los bienes pueden utilizarse como instrumentos de control</h3>
+            <p>En Honduras, la Ley Contra la Violencia Doméstica incluye la pérdida, sustracción, destrucción o retención de bienes y documentos, así como acciones que afecten los recursos o ingresos de la mujer.</p>
+            <details>
+              <summary>Ejemplos</summary>
+              <div>
+                <ul>
+                  <li>Retener documentos personales, tarjetas, escrituras o pertenencias.</li>
+                  <li>Impedir trabajar, estudiar o administrar ingresos.</li>
+                  <li>Controlar cada gasto o negar recursos necesarios como forma de castigo.</li>
+                  <li>Crear deudas a nombre de la mujer o apropiarse de sus ingresos.</li>
+                  <li>Destruir herramientas, bienes o documentos para limitar su autonomía.</li>
+                </ul>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <article class="learning-topic" data-category="formas" data-search="violencia digital tecnología internet redes sociales stalking doxing suplantación contraseñas ubicación imágenes íntimas vigilancia">
+          <div class="topic-number">08</div>
+          <div class="topic-content">
+            <span class="tag">Violencia digital</span>
+            <h3>La tecnología también puede utilizarse para acosar, vigilar o dañar</h3>
+            <p>ONU Mujeres describe la violencia facilitada por tecnología como un continuo que puede conectarse con la violencia fuera de internet e incluir acoso sexual, persecución, discursos de odio, difamación y otras formas de abuso.</p>
+            <details>
+              <summary>Ejemplos y seguridad digital</summary>
+              <div>
+                <ul>
+                  <li>Acceder a cuentas o contraseñas sin autorización.</li>
+                  <li>Rastrear ubicación mediante aplicaciones, dispositivos o cuentas compartidas.</li>
+                  <li>Suplantar identidad, publicar información privada o divulgar contenido íntimo sin consentimiento.</li>
+                  <li>Enviar amenazas, hostigamiento persistente o campañas de desprestigio.</li>
+                </ul>
+                <p><strong>Precaución:</strong> cambiar una contraseña o desactivar una ubicación puede alertar a una persona agresora. Antes de modificar configuraciones, considera si hacerlo podría aumentar el riesgo.</p>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <article class="learning-topic" data-category="formas" data-search="física lesiones golpes empujones estrangulación asfixia armas encierro salud">
+          <div class="topic-number">09</div>
+          <div class="topic-content">
+            <span class="tag">Violencia física</span>
+            <h3>No es necesario esperar una lesión grave para buscar ayuda</h3>
+            <p>Golpes, empujones, quemaduras, encierro, inmovilización, uso de objetos y otras acciones contra la integridad física son señales que requieren atención.</p>
+            <details>
+              <summary>Señales de especial peligro</summary>
+              <div>
+                <p>Amenazas de muerte, estrangulación o asfixia, uso o amenaza con armas, impedir que una persona salga o reciba atención médica y el aumento de frecuencia o gravedad de la violencia son señales que deben tomarse seriamente.</p>
+                <button class="primary-btn" data-go="riesgo" type="button">Ir a evaluación de riesgo</button>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <article class="learning-topic" data-category="formas" data-search="acoso laboral educativo callejero sexual trabajo escuela universidad hostigamiento poder">
+          <div class="topic-number">10</div>
+          <div class="topic-content">
+            <span class="tag">Otros espacios</span>
+            <h3>La violencia no ocurre únicamente en la pareja</h3>
+            <p>Las mujeres pueden vivir hostigamiento, acoso, abuso sexual, amenazas o discriminación en espacios laborales, educativos, comunitarios, políticos, digitales y públicos.</p>
+            <details>
+              <summary>¿Qué cambia según el contexto?</summary>
+              <div>
+                <p>La institución competente y el procedimiento pueden variar según quién ejerce la conducta, dónde ocurre, la edad de la persona afectada y si los hechos constituyen una infracción administrativa, laboral, doméstica o un delito.</p>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <article class="learning-topic" data-category="conceptos" data-search="mitos realidades celos amor alcohol pobreza denuncia pruebas quedarse pareja culpa">
+          <div class="topic-number">11</div>
+          <div class="topic-content">
+            <span class="tag">Mitos y realidades</span>
+            <h3>Ideas comunes que pueden ocultar la violencia</h3>
+            <div class="myth-list">
+              <div><strong>Mito:</strong> “Los celos son una prueba de amor”.<br><span><strong>Realidad:</strong> vigilar, aislar o controlar no es una forma saludable de afecto.</span></div>
+              <div><strong>Mito:</strong> “Solo existe violencia si hay golpes”.<br><span><strong>Realidad:</strong> también puede ser psicológica, sexual, económica, patrimonial o digital.</span></div>
+              <div><strong>Mito:</strong> “El alcohol provoca la violencia”.<br><span><strong>Realidad:</strong> puede aumentar riesgos o gravedad, pero no justifica ni elimina la responsabilidad de quien agrede.</span></div>
+              <div><strong>Mito:</strong> “Si se queda, es porque acepta”.<br><span><strong>Realidad:</strong> miedo, amenazas, dependencia, hijos/as, falta de recursos y otras barreras pueden dificultar salir.</span></div>
+              <div><strong>Mito:</strong> “Sin pruebas no se puede pedir ayuda”.<br><span><strong>Realidad:</strong> una mujer puede solicitar orientación y atención aunque no tenga fotografías, mensajes o documentos.</span></div>
+              <div><strong>Mito:</strong> “Se necesita abogado para denunciar violencia doméstica”.<br><span><strong>Realidad:</strong> la Ley Contra la Violencia Doméstica establece que para presentar la denuncia y solicitar medidas de seguridad no se requiere representación de un profesional del Derecho.</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="learning-topic" data-category="conceptos" data-search="salud consecuencias depresión ansiedad embarazo infecciones lesiones salud mental sexual reproductiva hijos economía trabajo">
+          <div class="topic-number">12</div>
+          <div class="topic-content">
+            <span class="tag">Impactos</span>
+            <h3>La violencia puede afectar múltiples dimensiones de la vida</h3>
+            <p>La OMS señala consecuencias físicas, mentales, sexuales y reproductivas a corto y largo plazo. También puede afectar a hijas e hijos y generar aislamiento, pérdida de ingresos y dificultades para participar en actividades cotidianas.</p>
+            <details>
+              <summary>Posibles consecuencias</summary>
+              <div class="mini-grid">
+                <div><strong>Salud física</strong><p>Lesiones, dolor, problemas crónicos y consecuencias asociadas a agresiones.</p></div>
+                <div><strong>Salud mental</strong><p>Ansiedad, depresión, miedo persistente, afectación del sueño y otros problemas.</p></div>
+                <div><strong>Salud sexual y reproductiva</strong><p>Embarazos no planificados, infecciones de transmisión sexual y complicaciones reproductivas.</p></div>
+                <div><strong>Vida social y económica</strong><p>Aislamiento, pérdida de empleo o ingresos, ausencias y dificultades para estudiar o trabajar.</p></div>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <article class="learning-topic" data-category="seguridad" data-search="apoyar amiga familiar escuchar creer no juzgar acompañar ayuda denuncia apoyo">
+          <div class="topic-number">13</div>
+          <div class="topic-content">
+            <span class="tag">Apoyar a otra persona</span>
+            <h3>¿Qué hacer si una amiga, familiar o compañera te cuenta que vive violencia?</h3>
+            <p>Una respuesta respetuosa puede facilitar que la persona busque ayuda y mantenga el control sobre sus decisiones.</p>
+            <details>
+              <summary>Formas de apoyar</summary>
+              <div>
+                <ol>
+                  <li><strong>Escucha sin interrogar ni culpar.</strong></li>
+                  <li><strong>Reconoce lo que cuenta.</strong> Evita minimizar o justificar a quien ejerce la violencia.</li>
+                  <li><strong>Pregunta qué necesita.</strong> No impongas decisiones si no existe una emergencia inmediata.</li>
+                  <li><strong>Ofrece información.</strong> Puedes compartir canales de atención y ayudar a elaborar un plan de seguridad.</li>
+                  <li><strong>Respeta la privacidad.</strong> Compartir su historia sin consentimiento puede aumentar riesgos.</li>
+                </ol>
+                <p>Si hay peligro inmediato, busca apoyo de servicios de emergencia de una manera que no incremente el riesgo.</p>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <article class="learning-topic" data-category="seguridad" data-search="por qué no denuncia barreras miedo vergüenza estigma dependencia hijos discriminación acceso rural indígena discapacidad">
+          <div class="topic-number">14</div>
+          <div class="topic-content">
+            <span class="tag">Barreras de acceso</span>
+            <h3>Buscar ayuda puede ser un proceso difícil</h3>
+            <p>No todas las mujeres tienen las mismas condiciones para denunciar o acudir a servicios. La distancia, dependencia económica, miedo, amenazas, estigma, idioma, discapacidad o desconfianza institucional pueden convertirse en barreras.</p>
+            <details>
+              <summary>Enfoque interseccional</summary>
+              <div>
+                <p>Algunas mujeres enfrentan riesgos y obstáculos adicionales por edad, discapacidad, pertenencia indígena o afrohondureña, situación migratoria, residencia rural, pobreza u otras condiciones. La respuesta debe adaptar los servicios sin reducir la autonomía de la mujer.</p>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <article class="learning-topic" data-category="prevencion" data-search="prevención relaciones saludables respeto autonomía igualdad educación comunidad hombres niños">
+          <div class="topic-number">15</div>
+          <div class="topic-content">
+            <span class="tag">Prevención</span>
+            <h3>Prevenir significa transformar condiciones que permiten la violencia</h3>
+            <p>La prevención no consiste únicamente en enseñar a las mujeres a protegerse. Requiere promover igualdad, relaciones respetuosas, autonomía, educación, respuestas institucionales eficaces y rechazo social a todas las formas de violencia.</p>
+            <details>
+              <summary>¿Qué puede promoverse?</summary>
+              <div>
+                <ul>
+                  <li>Educación sobre igualdad, consentimiento, resolución no violenta de conflictos y relaciones saludables.</li>
+                  <li>Autonomía económica y acceso de las mujeres a recursos y oportunidades.</li>
+                  <li>Participación de hombres y niños en la transformación de normas que normalizan el control o la violencia.</li>
+                  <li>Servicios accesibles, confidenciales y coordinados para quienes viven violencia.</li>
+                  <li>Datos, investigación y evaluación para conocer qué acciones funcionan.</li>
+                </ul>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <article class="learning-topic" data-category="derechos" data-search="Honduras ley violencia doméstica decreto 132-97 250-2005 denuncia abogado gratuidad celeridad secretividad oralidad protección">
+          <div class="topic-number">16</div>
+          <div class="topic-content">
+            <span class="tag">Honduras</span>
+            <h3>Ley Contra la Violencia Doméstica</h3>
+            <p>La ley hondureña protege la integridad física, psicológica, patrimonial y sexual de las mujeres en las relaciones comprendidas por su ámbito de aplicación y reconoce formas físicas, psicológicas, sexuales y patrimoniales/económicas de violencia.</p>
+            <details>
+              <summary>Puntos básicos para conocer</summary>
+              <div>
+                <ul>
+                  <li>La ley define la violencia doméstica como un patrón de conducta asociado a un ejercicio desigual de poder.</li>
+                  <li>Establece principios de acción pública, gratuidad, celeridad, secretividad, oralidad y oficiosidad.</li>
+                  <li>Para presentar una denuncia y solicitar medidas de seguridad no exige representación de un profesional del Derecho.</li>
+                  <li>Prevé mecanismos de protección para detener la violencia y prevenir daños mayores.</li>
+                </ul>
+                <p class="field-help">Este es un resumen educativo. Los procedimientos y reformas deben verificarse siempre en la normativa oficial vigente.</p>
+                <a class="source-link" href="https://www.poderjudicial.gob.hn/DependenciasPJ/UnidG%C3%A9nero/Normativa%20Nacional/Ley%20contra%20la%20Violencia%20Domestica.pdf" target="_blank" rel="noopener noreferrer">Consultar texto oficial del Poder Judicial ↗</a>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <article class="learning-topic" data-category="derechos" data-search="Política Nacional Mujer III Plan Igualdad Justicia Género 2023 2033 SEMUJER vida libre violencias eje 2">
+          <div class="topic-number">17</div>
+          <div class="topic-content">
+            <span class="tag">Política pública</span>
+            <h3>Política Nacional de la Mujer 2023–2033</h3>
+            <p>La Política Nacional de la Mujer – III Plan de Igualdad y Justicia de Género de Honduras organiza siete ejes de derechos. Su Eje 2 se centra en el derecho de las mujeres y niñas a una vida libre de violencias.</p>
+            <details>
+              <summary>¿Por qué es relevante para esta app?</summary>
+              <div>
+                <p>El eje plantea responsabilidades del Estado para garantizar una vida libre de violencias, junto con paz, justicia y seguridad. Una herramienta digital institucional debe contribuir a prevención, orientación, acceso a servicios, información y articulación de rutas, no limitarse únicamente a recibir denuncias.</p>
+                <a class="source-link" href="https://semujer.gob.hn/index.php/politica-nacional-de-la-mujer/" target="_blank" rel="noopener noreferrer">Consultar Política Nacional en SEMUJER ↗</a>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <article class="learning-topic" data-category="derechos" data-search="CEDAW Belem do Para derechos humanos normativa internacional biblioteca SEMUJER ONAG casas refugio igualdad oportunidades desplazamiento">
+          <div class="topic-number">18</div>
+          <div class="topic-content">
+            <span class="tag">Marco de derechos</span>
+            <h3>Normas nacionales e internacionales</h3>
+            <p>La Biblioteca del Observatorio Nacional de Género de SEMUJER reúne normativa nacional e internacional relevante para los derechos de las mujeres.</p>
+            <details>
+              <summary>Instrumentos que conviene conocer</summary>
+              <div>
+                <ul>
+                  <li>Ley Contra la Violencia Doméstica.</li>
+                  <li>Ley de Igualdad de Oportunidades para la Mujer.</li>
+                  <li>Ley de Casas Refugio para Mujeres Víctimas-Sobrevivientes de Violencias.</li>
+                  <li>Ley para la Prevención, Atención y Protección de las Personas Desplazadas Internamente.</li>
+                  <li>Convención sobre la Eliminación de Todas las Formas de Discriminación contra la Mujer (CEDAW).</li>
+                  <li>Convención de Belém do Pará.</li>
+                </ul>
+                <a class="source-link" href="https://onag.semujer.gob.hn/?page_id=24" target="_blank" rel="noopener noreferrer">Abrir Biblioteca del ONAG ↗</a>
+              </div>
+            </details>
+          </div>
+        </article>
+
+      </div>
+
+      <div id="learningEmpty" class="empty-state hidden">
+        <strong>No encontramos ese tema.</strong>
+        <p>Prueba con palabras como “consentimiento”, “violencia digital”, “psicológica”, “ley” o “apoyo”.</p>
+      </div>
+
+      <div class="glossary-card">
+        <div class="section-heading compact">
+          <span class="eyebrow">GLOSARIO</span>
+          <h2>Conceptos útiles</h2>
+        </div>
+        <div class="glossary-grid">
+          <article><strong>Autonomía</strong><p>Capacidad de tomar decisiones sobre la propia vida, cuerpo, recursos y proyectos sin coerción.</p></article>
+          <article><strong>Coerción</strong><p>Uso de presión, amenazas, fuerza, manipulación o abuso de poder para obtener una conducta.</p></article>
+          <article><strong>Control coercitivo</strong><p>Patrón de acciones destinado a limitar la libertad y autonomía de otra persona mediante vigilancia, aislamiento, miedo u otras formas de control.</p></article>
+          <article><strong>Víctima / sobreviviente</strong><p>Ambos términos pueden utilizarse según el contexto. “Sobreviviente” suele enfatizar agencia y recuperación; “víctima” tiene usos jurídicos e institucionales.</p></article>
+          <article><strong>Revictimización</strong><p>Nuevo daño producido por respuestas, prácticas o interacciones que culpabilizan, humillan o hacen repetir innecesariamente experiencias traumáticas.</p></article>
+          <article><strong>Enfoque centrado en la sobreviviente</strong><p>Respuesta que prioriza seguridad, dignidad, derechos, decisiones y necesidades de la mujer.</p></article>
+        </div>
+      </div>
+
+      <div class="learning-sources">
+        <strong>Fuentes educativas principales</strong>
+        <p>OMS, ONU Mujeres, Poder Judicial de Honduras y SEMUJER/ONAG. Contenido revisado para esta versión el 18 de agosto de 2026.</p>
+        <div class="source-buttons">
+          <a href="https://www.who.int/news-room/fact-sheets/detail/violence-against-women" target="_blank" rel="noopener noreferrer">OMS ↗</a>
+          <a href="https://www.unwomen.org/en/articles/faqs/faqs-types-of-violence-against-women-and-girls" target="_blank" rel="noopener noreferrer">ONU Mujeres ↗</a>
+          <a href="https://semujer.gob.hn/index.php/politica-nacional-de-la-mujer/" target="_blank" rel="noopener noreferrer">SEMUJER ↗</a>
+          <a href="https://onag.semujer.gob.hn/?page_id=24" target="_blank" rel="noopener noreferrer">ONAG ↗</a>
         </div>
       </div>
     </section>
@@ -574,6 +994,7 @@
 
   <nav class="mobile-nav" aria-label="Navegación móvil">
     <button class="mobile-tab active" data-target="inicio" type="button"><span>⌂</span>Inicio</button>
+    <button class="mobile-tab" data-target="aprender" type="button"><span>A</span>Aprender</button>
     <button class="mobile-tab" data-target="riesgo" type="button"><span>!</span>Riesgo</button>
     <button class="mobile-tab" data-target="denuncia" type="button"><span>✎</span>Denuncia</button>
     <button class="mobile-tab" data-target="ayuda" type="button"><span>☎</span>Ayuda</button>

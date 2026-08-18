@@ -1,4 +1,4 @@
-# Vivir Segura — Versión 2 ampliada
+# Vivir Segura — Versión 3 educativa y ampliada
 
 Prototipo PWA para GitHub Pages.
 
@@ -42,3 +42,30 @@ Antes de una implementación institucional real se requiere, entre otros:
 - convenio/ruta institucional de recepción y seguimiento;
 - protocolo de respuesta ante incidentes;
 - pruebas de seguridad y accesibilidad.
+
+
+## Nuevos contenidos de la V3
+- Centro de aprendizaje con buscador interno.
+- Definición y contexto de violencia contra las mujeres.
+- Desigualdad de género, poder y control.
+- Consentimiento sexual explicado de forma educativa.
+- Dinámicas de la violencia y barreras para salir o denunciar.
+- Violencia sexual, psicológica, física, económica/patrimonial y digital.
+- Violencia en espacios distintos a la pareja.
+- Mitos y realidades.
+- Impactos físicos, mentales, sexuales, reproductivos, sociales y económicos.
+- Guía para apoyar a una amiga, familiar o compañera.
+- Prevención y enfoque interseccional.
+- Resumen educativo de la Ley Contra la Violencia Doméstica de Honduras.
+- Política Nacional de la Mujer 2023–2033.
+- Marco nacional e internacional.
+- Glosario de conceptos.
+
+## Fuentes educativas utilizadas
+- Organización Mundial de la Salud (OMS).
+- ONU Mujeres.
+- Poder Judicial de Honduras.
+- SEMUJER.
+- Observatorio Nacional de Género (ONAG).
+
+Revisión de contenido para esta versión: 18 de agosto de 2026.
