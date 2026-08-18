@@ -5,7 +5,19 @@
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#f7f3f8",
-  "theme_color": "#6b2d75",
-  "description": "Orientación, evaluación básica de riesgo y preparación de información sobre violencia de género en Honduras."
+  "background_color": "#f6f2f7",
+  "theme_color": "#6d2b74",
+  "description": "Orientación, prevención, evaluación básica de riesgo, plan de seguridad y preparación de información sobre violencia contra las mujeres en Honduras.",
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
 }

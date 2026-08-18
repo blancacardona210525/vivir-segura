@@ -1,310 +1,589 @@
 <!doctype html>
-<html lang="es">
+<html lang="es-HN">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#6b2d75" />
-  <meta name="description" content="Prototipo de orientación y pre-denuncia sobre violencia de género en Honduras." />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#6d2b74">
+  <meta name="description" content="Vivir Segura: prototipo de orientación, prevención, seguridad y preparación de información sobre violencia contra las mujeres en Honduras.">
   <title>Vivir Segura</title>
-  <link rel="manifest" href="manifest.webmanifest" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icon-192.png" type="image/png">
+  <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
+  <div id="discreetCover" class="discreet-cover hidden" aria-hidden="true">
+    <div class="notes-shell">
+      <div class="notes-head">
+        <strong>Mis notas</strong>
+        <button id="leaveDiscreet" type="button" class="neutral-small">Cerrar</button>
+      </div>
+      <p>Lista personal</p>
+      <div class="note-line"></div><div class="note-line short"></div>
+      <div class="note-line"></div><div class="note-line medium"></div>
+      <p class="tiny muted">Contenido temporal.</p>
+    </div>
+  </div>
+
   <header class="topbar">
     <div class="brand" aria-label="Vivir Segura">
       <div class="brand-mark" aria-hidden="true">VS</div>
-      <div>
+      <div class="brand-copy">
         <strong>Vivir Segura</strong>
-        <span>Orientación y apoyo</span>
+        <span>Información, prevención y orientación</span>
       </div>
     </div>
-    <button id="quickExit" class="danger-btn" type="button" aria-label="Salida rápida de la aplicación">Salida rápida</button>
+
+    <div class="top-actions">
+      <button id="fontDown" class="utility-btn" type="button" aria-label="Reducir tamaño del texto">A−</button>
+      <button id="fontUp" class="utility-btn" type="button" aria-label="Aumentar tamaño del texto">A+</button>
+      <button id="contrastToggle" class="utility-btn" type="button" aria-pressed="false">Contraste</button>
+      <button id="discreetMode" class="utility-btn" type="button">Modo discreto</button>
+      <button id="quickExit" class="danger-btn" type="button">Salida rápida</button>
+    </div>
   </header>
 
   <main id="contenido" class="container">
-    <section class="hero card">
-      <div>
-        <p class="eyebrow">Información • Orientación • Pre-denuncia</p>
-        <h1>No estás sola para buscar información y apoyo.</h1>
-        <p>Esta aplicación ayuda a reconocer situaciones de violencia de género, organizar información para una denuncia y encontrar canales oficiales de ayuda en Honduras.</p>
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">PROTOTIPO • HONDURAS</span>
+        <h1>Información clara para reconocer la violencia y buscar apoyo.</h1>
+        <p>Consulta señales, valora riesgos, prepara un plan de seguridad y organiza información para solicitar ayuda o presentar una denuncia.</p>
+        <div class="hero-actions">
+          <button class="primary-btn" data-go="riesgo" type="button">Evaluar mi situación</button>
+          <button class="ghost-btn" data-go="ayuda" type="button">Buscar ayuda</button>
+        </div>
+        <p class="microcopy">No se guardan en este sitio los datos que escribas en los formularios.</p>
       </div>
-      <div class="emergency-panel" role="region" aria-label="Ayuda inmediata">
-        <strong>¿Hay peligro inmediato?</strong>
-        <p>Usa un teléfono seguro si es posible.</p>
-        <div class="button-row">
-          <a class="primary-btn" href="tel:911">Llamar 911</a>
-          <a class="secondary-btn" href="tel:114">Llamar 1-1-4</a>
+
+      <aside class="emergency-card" aria-label="Ayuda inmediata">
+        <span class="status-dot"></span>
+        <h2>¿Hay peligro inmediato?</h2>
+        <p>Si puedes hacerlo sin aumentar el riesgo, utiliza un teléfono seguro.</p>
+        <a class="emergency-call" href="tel:911"><span>Emergencias</span><strong>911</strong></a>
+        <a class="emergency-call alt" href="tel:114"><span>Línea Mujer Vivir Sin Miedo</span><strong>1-1-4</strong></a>
+        <small>La Línea 1-1-4 es reportada por SEMUJER como gratuita, confidencial y disponible 24/7.</small>
+      </aside>
+    </section>
+
+    <div class="notice">
+      <strong>Importante:</strong> esta es una herramienta de demostración. No sustituye a una evaluación profesional y todavía no envía denuncias oficialmente a ninguna institución.
+    </div>
+
+    <nav class="tabs" aria-label="Secciones principales">
+      <button class="tab active" data-target="inicio" type="button">Inicio</button>
+      <button class="tab" data-target="identificar" type="button">Identificar</button>
+      <button class="tab" data-target="riesgo" type="button">Riesgo</button>
+      <button class="tab" data-target="plan" type="button">Plan de seguridad</button>
+      <button class="tab" data-target="denuncia" type="button">Pre-denuncia</button>
+      <button class="tab" data-target="ayuda" type="button">Dónde acudir</button>
+      <button class="tab" data-target="derechos" type="button">Derechos y recursos</button>
+    </nav>
+
+    <section id="inicio" class="panel active-panel" tabindex="-1">
+      <div class="section-heading">
+        <span class="eyebrow">¿QUÉ NECESITAS?</span>
+        <h2>Empieza por aquí</h2>
+      </div>
+
+      <div class="dashboard-grid">
+        <article class="action-card">
+          <div class="round-icon">?</div>
+          <h3>¿Esto puede ser violencia?</h3>
+          <p>Revisa señales de control, amenazas, violencia sexual, económica, digital y otras manifestaciones.</p>
+          <button class="text-btn" data-go="identificar" type="button">Reconocer señales →</button>
+        </article>
+
+        <article class="action-card">
+          <div class="round-icon">!</div>
+          <h3>¿Estoy en riesgo?</h3>
+          <p>Responde una guía orientativa que prioriza señales de peligro grave.</p>
+          <button class="text-btn" data-go="riesgo" type="button">Evaluar riesgo →</button>
+        </article>
+
+        <article class="action-card">
+          <div class="round-icon">✓</div>
+          <h3>Preparar un plan</h3>
+          <p>Organiza contactos, documentos, rutas de salida y otras medidas de seguridad.</p>
+          <button class="text-btn" data-go="plan" type="button">Crear plan →</button>
+        </article>
+
+        <article class="action-card">
+          <div class="round-icon">✎</div>
+          <h3>Preparar una denuncia</h3>
+          <p>Ordena hechos, fechas, tipos de violencia, evidencias y necesidades de atención.</p>
+          <button class="text-btn" data-go="denuncia" type="button">Abrir formulario →</button>
+        </article>
+
+        <article class="action-card">
+          <div class="round-icon">☎</div>
+          <h3>Buscar ayuda</h3>
+          <p>Consulta los canales oficiales y una ruta básica para saber a quién acudir.</p>
+          <button class="text-btn" data-go="ayuda" type="button">Ver instituciones →</button>
+        </article>
+
+        <article class="action-card">
+          <div class="round-icon">i</div>
+          <h3>Derechos y atención inclusiva</h3>
+          <p>Orientación para mujeres indígenas, afrohondureñas, con discapacidad, adolescentes y otras situaciones.</p>
+          <button class="text-btn" data-go="derechos" type="button">Ver información →</button>
+        </article>
+      </div>
+
+      <div class="split-card">
+        <div>
+          <span class="eyebrow">PRIVACIDAD</span>
+          <h3>Usa un dispositivo seguro siempre que sea posible</h3>
+          <p>Evita escribir información sensible si otra persona revisa tu teléfono, correo o historial. El botón <strong>Salida rápida</strong> reemplaza esta página por una página neutral.</p>
+        </div>
+        <div class="privacy-list">
+          <span>✓ Sin localStorage</span>
+          <span>✓ Sin sessionStorage</span>
+          <span>✓ Sin cuenta de usuario</span>
+          <span>✓ Formularios temporales</span>
         </div>
       </div>
     </section>
 
-    <nav class="tabs" aria-label="Secciones principales">
-      <button class="tab active" data-target="inicio" type="button">Inicio</button>
-      <button class="tab" data-target="informacion" type="button">Conocer la violencia</button>
-      <button class="tab" data-target="riesgo" type="button">Evaluar riesgo</button>
-      <button class="tab" data-target="denuncia" type="button">Preparar denuncia</button>
-      <button class="tab" data-target="ayuda" type="button">Dónde acudir</button>
-    </nav>
-
-    <section id="inicio" class="panel active-panel" tabindex="-1">
-      <div class="grid two">
-        <article class="card action-card">
-          <div class="icon" aria-hidden="true">!</div>
-          <h2>Necesito ayuda ahora</h2>
-          <p>Accede rápidamente a los números oficiales de emergencia y atención especializada.</p>
-          <button class="link-btn" data-go="ayuda" type="button">Ver canales de ayuda</button>
-        </article>
-        <article class="card action-card">
-          <div class="icon" aria-hidden="true">i</div>
-          <h2>Quiero saber si esto es violencia</h2>
-          <p>Consulta manifestaciones frecuentes y ejemplos sencillos.</p>
-          <button class="link-btn" data-go="informacion" type="button">Leer información</button>
-        </article>
-        <article class="card action-card">
-          <div class="icon" aria-hidden="true">✓</div>
-          <h2>Quiero valorar mi nivel de riesgo</h2>
-          <p>Responde una guía breve. No sustituye una evaluación profesional.</p>
-          <button class="link-btn" data-go="riesgo" type="button">Iniciar evaluación</button>
-        </article>
-        <article class="card action-card">
-          <div class="icon" aria-hidden="true">✎</div>
-          <h2>Quiero preparar una denuncia</h2>
-          <p>Organiza hechos, fechas, evidencias y necesidades de protección sin guardar datos en este dispositivo.</p>
-          <button class="link-btn" data-go="denuncia" type="button">Preparar información</button>
-        </article>
-      </div>
-
-      <aside class="privacy-note card">
-        <h2>Privacidad primero</h2>
-        <p>El prototipo no guarda el formulario de denuncia en el almacenamiento del navegador. Antes de usarlo, verifica que el dispositivo y la conexión sean seguros.</p>
-      </aside>
-    </section>
-
-    <section id="informacion" class="panel" tabindex="-1">
+    <section id="identificar" class="panel" tabindex="-1">
       <div class="section-heading">
-        <p class="eyebrow">Aprender para identificar</p>
-        <h2>¿Qué es la violencia de género?</h2>
-        <p>Puede presentarse de distintas maneras y no siempre deja lesiones visibles. Una misma situación puede contener varias formas de violencia.</p>
+        <span class="eyebrow">RECONOCER</span>
+        <h2>La violencia puede presentarse de muchas formas</h2>
+        <p>Una situación puede incluir varias formas de violencia al mismo tiempo. Los ejemplos son orientativos y no sustituyen la valoración de una autoridad o profesional.</p>
       </div>
 
-      <div class="grid three">
-        <article class="card info-card">
-          <h3>Violencia física</h3>
-          <p>Golpes, empujones, quemaduras, lesiones, uso de objetos o cualquier acción que dañe o ponga en riesgo el cuerpo.</p>
+      <div class="violence-grid">
+        <article class="info-card"><span class="tag">Física</span><h3>Daño o amenaza al cuerpo</h3><p>Golpes, empujones, quemaduras, encierro, lesiones, uso de objetos o acciones que ponen en riesgo la integridad física.</p></article>
+        <article class="info-card"><span class="tag">Psicológica</span><h3>Miedo, humillación y control</h3><p>Amenazas, insultos, aislamiento, chantaje, intimidación, desvalorización o control persistente.</p></article>
+        <article class="info-card"><span class="tag">Sexual</span><h3>Actos sin consentimiento libre</h3><p>Contacto o práctica sexual obtenida mediante fuerza, presión, amenazas, manipulación, miedo o cuando la persona no puede consentir.</p></article>
+        <article class="info-card"><span class="tag">Económica</span><h3>Control mediante recursos</h3><p>Impedir trabajar o estudiar, quitar ingresos, controlar el dinero, generar deudas o negar recursos básicos como forma de control.</p></article>
+        <article class="info-card"><span class="tag">Patrimonial</span><h3>Daño o retención de bienes</h3><p>Destruir, ocultar, retener o apropiarse de documentos, vivienda, pertenencias, herramientas u otros bienes.</p></article>
+        <article class="info-card"><span class="tag">Digital</span><h3>Control y agresión mediante tecnología</h3><p>Revisar cuentas sin permiso, rastrear ubicación, amenazas digitales, suplantación o difusión de contenido íntimo sin consentimiento.</p></article>
+        <article class="info-card"><span class="tag">Acoso</span><h3>Conductas no deseadas y repetidas</h3><p>Seguimiento, mensajes insistentes, vigilancia, acercamientos intimidantes o conductas que generan temor o limitan la libertad.</p></article>
+        <article class="info-card"><span class="tag">Laboral / educativa</span><h3>Abuso de poder o hostigamiento</h3><p>Presiones, amenazas, castigos o conductas de naturaleza sexual o discriminatoria que afectan el trabajo o estudio.</p></article>
+      </div>
+
+      <div class="section-heading compact">
+        <span class="eyebrow">SEÑALES DE ALERTA</span>
+        <h2>Semáforo orientativo</h2>
+      </div>
+
+      <div class="signal-grid">
+        <article class="signal-card level-1">
+          <strong>Atención</strong>
+          <ul><li>Revisa tu teléfono sin permiso.</li><li>Decide con quién puedes hablar.</li><li>Ridiculiza o desvaloriza constantemente.</li><li>Controla dinero o desplazamientos.</li></ul>
         </article>
-        <article class="card info-card">
-          <h3>Violencia psicológica</h3>
-          <p>Amenazas, humillaciones, aislamiento, intimidación, control, chantaje o conductas que deterioran el bienestar emocional.</p>
+        <article class="signal-card level-2">
+          <strong>Riesgo</strong>
+          <ul><li>Te sigue o vigila.</li><li>Rompe objetos para intimidarte.</li><li>Te amenaza o amenaza a personas cercanas.</li><li>La violencia está aumentando.</li></ul>
         </article>
-        <article class="card info-card">
-          <h3>Violencia sexual</h3>
-          <p>Cualquier acto, contacto o práctica sexual sin consentimiento libre, o realizada mediante presión, amenazas, manipulación o fuerza.</p>
-        </article>
-        <article class="card info-card">
-          <h3>Violencia económica</h3>
-          <p>Control del dinero, impedir trabajar o estudiar, quitar ingresos, generar deudas o negar recursos necesarios como forma de control.</p>
-        </article>
-        <article class="card info-card">
-          <h3>Violencia patrimonial</h3>
-          <p>Destruir, retener, ocultar o apropiarse de bienes, documentos, vivienda, herramientas de trabajo u otros recursos.</p>
-        </article>
-        <article class="card info-card">
-          <h3>Acoso y violencia digital</h3>
-          <p>Vigilancia de cuentas, amenazas por medios digitales, difusión no consentida de contenido íntimo o control tecnológico. Su tratamiento jurídico depende del hecho concreto.</p>
+        <article class="signal-card level-3">
+          <strong>Alto riesgo</strong>
+          <ul><li>Amenaza con matarte.</li><li>Intenta estrangular o asfixiar.</li><li>Usa o amenaza con armas.</li><li>Te impide salir o pedir ayuda.</li></ul>
         </article>
       </div>
 
-      <div class="card warning-card">
-        <h3>Señales que requieren atención inmediata</h3>
-        <ul>
-          <li>Amenazas de muerte o de causar daño grave.</li>
-          <li>Intentos de estrangulamiento o asfixia.</li>
-          <li>Uso o acceso a armas durante amenazas.</li>
-          <li>Persecución, vigilancia o ingreso forzado a la vivienda.</li>
-          <li>Violencia que aumenta en frecuencia o gravedad.</li>
-        </ul>
+      <div class="quiz-card">
+        <div>
+          <span class="eyebrow">AUTOORIENTACIÓN</span>
+          <h3>¿Reconoces alguna de estas situaciones?</h3>
+          <p>Marca todas las que correspondan. El resultado no es un diagnóstico.</p>
+        </div>
+        <form id="signalForm">
+          <label class="check"><input type="checkbox" name="signal" value="1"> Controla con quién hablo, cómo me visto o adónde voy.</label>
+          <label class="check"><input type="checkbox" name="signal" value="1"> Revisa mi teléfono, claves o ubicación sin mi consentimiento.</label>
+          <label class="check"><input type="checkbox" name="signal" value="1"> Me humilla, ridiculiza o me hace sentir miedo.</label>
+          <label class="check"><input type="checkbox" name="signal" value="2"> Amenaza con dañarme, quitarme a mis hijas/os o afectar a mi familia.</label>
+          <label class="check"><input type="checkbox" name="signal" value="2"> Me obliga o presiona para realizar actos sexuales.</label>
+          <label class="check"><input type="checkbox" name="signal" value="3"> Me ha estrangulado, asfixiado o amenazado con matarme.</label>
+          <button class="primary-btn" type="submit">Ver orientación</button>
+        </form>
+        <div id="signalResult" class="result-card hidden" role="status" aria-live="polite"></div>
       </div>
     </section>
 
     <section id="riesgo" class="panel" tabindex="-1">
       <div class="section-heading">
-        <p class="eyebrow">Guía orientativa</p>
-        <h2>Evaluación básica de riesgo</h2>
-        <p>Marca lo que esté ocurriendo actualmente o haya ocurrido recientemente.</p>
+        <span class="eyebrow">EVALUACIÓN ORIENTATIVA</span>
+        <h2>Valoración básica de señales de riesgo</h2>
+        <p>Marca únicamente lo que esté ocurriendo o haya ocurrido recientemente. Las señales críticas se priorizan aunque el puntaje total sea bajo.</p>
       </div>
 
-      <form id="riskForm" class="card form-card">
+      <form id="riskForm" class="form-card">
         <fieldset>
-          <legend>Situaciones de alerta</legend>
-          <label class="check"><input type="checkbox" name="risk" value="3" /> Ha amenazado con matarme o causar daño grave.</label>
-          <label class="check"><input type="checkbox" name="risk" value="3" /> Me ha intentado estrangular, asfixiar o impedir respirar.</label>
-          <label class="check"><input type="checkbox" name="risk" value="3" /> Tiene o utiliza armas para amenazarme.</label>
-          <label class="check"><input type="checkbox" name="risk" value="2" /> Me sigue, vigila o controla constantemente.</label>
-          <label class="check"><input type="checkbox" name="risk" value="2" /> La violencia se ha vuelto más frecuente o más grave.</label>
-          <label class="check"><input type="checkbox" name="risk" value="2" /> Ha amenazado a niñas, niños, familiares, amistades o mascotas.</label>
-          <label class="check"><input type="checkbox" name="risk" value="1" /> Controla mi dinero, documentos, teléfono o desplazamientos.</label>
-          <label class="check"><input type="checkbox" name="risk" value="1" /> Tengo miedo de lo que pueda hacer si intento alejarme.</label>
+          <legend>Señales críticas</legend>
+          <label class="check critical"><input type="checkbox" name="risk" value="4" data-critical="1"> Ha amenazado con matarme o causar daño grave.</label>
+          <label class="check critical"><input type="checkbox" name="risk" value="4" data-critical="1"> Me ha estrangulado, asfixiado o impedido respirar.</label>
+          <label class="check critical"><input type="checkbox" name="risk" value="4" data-critical="1"> Utiliza o amenaza con armas.</label>
+          <label class="check critical"><input type="checkbox" name="risk" value="4" data-critical="1"> Me impide salir, pedir ayuda o recibir atención médica.</label>
         </fieldset>
-        <button class="primary-btn" type="submit">Ver orientación</button>
+
+        <fieldset>
+          <legend>Otras señales importantes</legend>
+          <label class="check"><input type="checkbox" name="risk" value="3"> La violencia ha aumentado en frecuencia o gravedad.</label>
+          <label class="check"><input type="checkbox" name="risk" value="3"> Me persigue, vigila o aparece donde estoy sin que yo lo quiera.</label>
+          <label class="check"><input type="checkbox" name="risk" value="3"> Ha amenazado a hijas/os, familiares, amistades o mascotas.</label>
+          <label class="check"><input type="checkbox" name="risk" value="2"> Controla mis documentos, teléfono, dinero o transporte.</label>
+          <label class="check"><input type="checkbox" name="risk" value="2"> Tengo miedo de lo que pueda ocurrir si intento terminar la relación o alejarme.</label>
+          <label class="check"><input type="checkbox" name="risk" value="2"> Me ha forzado o presionado sexualmente.</label>
+          <label class="check"><input type="checkbox" name="risk" value="1"> Me insulta, humilla, amenaza o aísla de otras personas.</label>
+        </fieldset>
+
+        <div class="button-row">
+          <button class="primary-btn" type="submit">Calcular orientación</button>
+          <button id="resetRisk" class="ghost-btn" type="button">Limpiar</button>
+        </div>
       </form>
 
-      <div id="riskResult" class="card result-card hidden" role="status" aria-live="polite"></div>
+      <div id="riskResult" class="result-card hidden" role="status" aria-live="polite"></div>
+
+      <div class="warning-note">
+        <strong>Una herramienta digital nunca puede conocer todo el contexto.</strong>
+        <p>Si sientes miedo o percibes peligro, puedes buscar apoyo aunque el resultado de esta guía sea bajo.</p>
+      </div>
+    </section>
+
+    <section id="plan" class="panel" tabindex="-1">
+      <div class="section-heading">
+        <span class="eyebrow">SEGURIDAD</span>
+        <h2>Construye un plan personal de seguridad</h2>
+        <p>No existe un único plan correcto. Completa solo lo que sea seguro para ti. Esta información no se guarda automáticamente.</p>
+      </div>
+
+      <div class="safety-checklist">
+        <article><span>1</span><div><h3>Personas de confianza</h3><p>Piensa en una o dos personas que puedan reconocer una palabra clave y ayudarte sin alertar a quien representa el riesgo.</p></div></article>
+        <article><span>2</span><div><h3>Lugar seguro</h3><p>Identifica un lugar al que puedas acudir si necesitas salir: familiar, amistad, institución o espacio público seguro.</p></div></article>
+        <article><span>3</span><div><h3>Documentos y necesidades</h3><p>Cuando sea seguro, considera documentos, medicamentos, llaves, dinero, ropa básica y necesidades de niñas, niños o personas dependientes.</p></div></article>
+        <article><span>4</span><div><h3>Seguridad digital</h3><p>Revisa si tu ubicación, cuentas o dispositivos están siendo compartidos. Cambiar configuraciones puede ser riesgoso si otra persona lo detecta.</p></div></article>
+      </div>
+
+      <form id="safetyForm" class="form-card">
+        <div class="form-grid">
+          <label>Persona de confianza
+            <input name="contacto" autocomplete="off" placeholder="Nombre, alias o referencia">
+          </label>
+          <label>Palabra o señal acordada
+            <input name="clave" autocomplete="off" placeholder="Ej.: una frase cotidiana">
+          </label>
+          <label>Lugar al que podría acudir
+            <input name="lugar" autocomplete="off" placeholder="No escribas una dirección si no es seguro">
+          </label>
+          <label>Transporte o ruta posible
+            <input name="ruta" autocomplete="off" placeholder="Ej.: taxi, vecina, transporte público">
+          </label>
+        </div>
+        <label>Elementos importantes que necesitaría
+          <textarea name="elementos" rows="3" placeholder="Documentos, medicinas, llaves, necesidades de niñas/os, etc."></textarea>
+        </label>
+        <label>Otras acciones que considero seguras
+          <textarea name="acciones" rows="3"></textarea>
+        </label>
+        <div class="button-row">
+          <button class="primary-btn" type="submit">Generar mi plan</button>
+          <button id="clearSafety" class="ghost-btn" type="button">Borrar formulario</button>
+        </div>
+      </form>
+
+      <div id="safetyResult" class="generated-card hidden">
+        <div class="generated-head">
+          <div><span class="eyebrow">RESUMEN TEMPORAL</span><h3>Mi plan de seguridad</h3></div>
+          <button id="copySafety" class="ghost-btn" type="button">Copiar</button>
+        </div>
+        <div id="safetyText"></div>
+        <p class="microcopy">Copiar coloca el texto en el portapapeles del dispositivo. Hazlo solo si es seguro.</p>
+      </div>
+
+      <div class="evidence-card">
+        <div>
+          <span class="eyebrow">EVIDENCIAS</span>
+          <h3>Preservar información sin ponerte en mayor riesgo</h3>
+        </div>
+        <div class="evidence-grid">
+          <div><strong>Mensajes</strong><p>Capturas o exportaciones pueden ser útiles si pueden conservarse de forma segura.</p></div>
+          <div><strong>Lesiones o atención médica</strong><p>Los registros de atención pueden documentar lesiones o afectaciones.</p></div>
+          <div><strong>Fechas y hechos</strong><p>Una cronología sencilla puede ayudarte a recordar lugares, amenazas y personas presentes.</p></div>
+          <div><strong>Documentos</strong><p>Conserva copias de documentos importantes en un lugar seguro cuando sea posible.</p></div>
+        </div>
+        <p class="warning-inline"><strong>No arriesgues tu seguridad para obtener una prueba.</strong> La ausencia de fotografías, mensajes u otros documentos no impide buscar ayuda.</p>
+      </div>
     </section>
 
     <section id="denuncia" class="panel" tabindex="-1">
       <div class="section-heading">
-        <p class="eyebrow">Módulo seguro de preparación</p>
-        <h2>Preparar una denuncia</h2>
-        <p>Completa únicamente lo que quieras compartir. Los campos de identidad son opcionales en este prototipo.</p>
+        <span class="eyebrow">PRE-DENUNCIA</span>
+        <h2>Organiza la información que quieras comunicar</h2>
+        <p>Este formulario crea un resumen local para ayudarte a explicar lo ocurrido. <strong>No presenta una denuncia oficial y no envía los datos a ningún servidor.</strong></p>
       </div>
 
-      <div class="status-banner">
-        <strong>Importante:</strong> este prototipo prepara y envía información a un servidor de demostración. No equivale a presentar una denuncia oficial ante una autoridad.
-      </div>
-
-      <form id="reportForm" class="card form-card" autocomplete="off">
-        <div class="form-grid">
-          <label>
-            Nombre o alias (opcional)
-            <input name="alias" maxlength="120" autocomplete="off" />
-          </label>
-          <label>
-            Edad (opcional)
-            <input name="edad" type="number" min="0" max="120" inputmode="numeric" />
-          </label>
-          <label>
-            Departamento
-            <select name="departamento" required>
-              <option value="">Selecciona</option>
-              <option>Atlántida</option><option>Choluteca</option><option>Colón</option><option>Comayagua</option>
-              <option>Copán</option><option>Cortés</option><option>El Paraíso</option><option>Francisco Morazán</option>
-              <option>Gracias a Dios</option><option>Intibucá</option><option>Islas de la Bahía</option><option>La Paz</option>
-              <option>Lempira</option><option>Ocotepeque</option><option>Olancho</option><option>Santa Bárbara</option>
-              <option>Valle</option><option>Yoro</option>
-            </select>
-          </label>
-          <label>
-            Municipio o localidad (opcional)
-            <input name="localidad" maxlength="120" autocomplete="off" />
-          </label>
-        </div>
-
+      <form id="reportForm" class="form-card" autocomplete="off">
         <fieldset>
-          <legend>Tipo de violencia</legend>
-          <div class="choice-grid">
-            <label class="check"><input type="checkbox" name="tipo" value="física" /> Física</label>
-            <label class="check"><input type="checkbox" name="tipo" value="psicológica" /> Psicológica</label>
-            <label class="check"><input type="checkbox" name="tipo" value="sexual" /> Sexual</label>
-            <label class="check"><input type="checkbox" name="tipo" value="económica" /> Económica</label>
-            <label class="check"><input type="checkbox" name="tipo" value="patrimonial" /> Patrimonial</label>
-            <label class="check"><input type="checkbox" name="tipo" value="digital/acoso" /> Digital / acoso</label>
-            <label class="check"><input type="checkbox" name="tipo" value="otra" /> Otra</label>
+          <legend>1. Información general</legend>
+          <div class="form-grid">
+            <label>Nombre o alias (opcional)
+              <input name="alias" maxlength="120" autocomplete="off">
+            </label>
+            <label>Edad (opcional)
+              <input name="edad" type="number" min="0" max="120" inputmode="numeric">
+            </label>
+            <label>Departamento
+              <select name="departamento">
+                <option value="">Selecciona</option>
+                <option>Atlántida</option><option>Choluteca</option><option>Colón</option><option>Comayagua</option>
+                <option>Copán</option><option>Cortés</option><option>El Paraíso</option><option>Francisco Morazán</option>
+                <option>Gracias a Dios</option><option>Intibucá</option><option>Islas de la Bahía</option><option>La Paz</option>
+                <option>Lempira</option><option>Ocotepeque</option><option>Olancho</option><option>Santa Bárbara</option>
+                <option>Valle</option><option>Yoro</option>
+              </select>
+            </label>
+            <label>Municipio / localidad (opcional)
+              <input name="localidad" maxlength="120" autocomplete="off">
+            </label>
+            <label>Fecha aproximada del hecho más reciente
+              <input name="fecha" type="date">
+            </label>
+            <label>Relación con la persona agresora (opcional)
+              <select name="relacion">
+                <option value="">Selecciona</option>
+                <option>Pareja o expareja</option>
+                <option>Familiar</option>
+                <option>Persona conocida</option>
+                <option>Compañero/a de trabajo o estudio</option>
+                <option>Autoridad o superior</option>
+                <option>Persona desconocida</option>
+                <option>Otra</option>
+              </select>
+            </label>
           </div>
         </fieldset>
 
-        <label>
-          ¿Qué ocurrió?
-          <textarea name="relato" rows="7" maxlength="6000" required placeholder="Describe los hechos con tus propias palabras. Puedes incluir qué pasó, cuándo, dónde y si hubo amenazas o lesiones."></textarea>
-        </label>
-
-        <div class="form-grid">
-          <label>
-            Fecha aproximada del hecho (opcional)
-            <input name="fecha" type="date" />
-          </label>
-          <label>
-            Relación con la persona agresora (opcional)
-            <select name="relacion">
-              <option value="">Selecciona</option>
-              <option>Pareja o expareja</option>
-              <option>Familiar</option>
-              <option>Conocido/a</option>
-              <option>Compañero/a de trabajo o estudio</option>
-              <option>Autoridad o persona con poder</option>
-              <option>Desconocido/a</option>
-              <option>Otra</option>
-            </select>
-          </label>
-        </div>
-
         <fieldset>
-          <legend>¿Qué necesitas?</legend>
+          <legend>2. ¿Qué tipo de situaciones ocurrieron?</legend>
           <div class="choice-grid">
-            <label class="check"><input type="checkbox" name="necesidad" value="protección" /> Protección inmediata</label>
-            <label class="check"><input type="checkbox" name="necesidad" value="atención médica" /> Atención médica</label>
-            <label class="check"><input type="checkbox" name="necesidad" value="orientación legal" /> Orientación legal</label>
-            <label class="check"><input type="checkbox" name="necesidad" value="apoyo psicológico" /> Apoyo psicológico</label>
-            <label class="check"><input type="checkbox" name="necesidad" value="refugio" /> Lugar seguro / refugio</label>
-            <label class="check"><input type="checkbox" name="necesidad" value="seguimiento" /> Seguimiento del caso</label>
+            <label class="check"><input type="checkbox" name="tipo" value="Violencia física"> Física</label>
+            <label class="check"><input type="checkbox" name="tipo" value="Violencia psicológica"> Psicológica</label>
+            <label class="check"><input type="checkbox" name="tipo" value="Violencia sexual"> Sexual</label>
+            <label class="check"><input type="checkbox" name="tipo" value="Violencia económica"> Económica</label>
+            <label class="check"><input type="checkbox" name="tipo" value="Violencia patrimonial"> Patrimonial</label>
+            <label class="check"><input type="checkbox" name="tipo" value="Violencia digital o acoso"> Digital / acoso</label>
           </div>
         </fieldset>
 
-        <label>
-          Evidencias disponibles (no adjuntes archivos en este prototipo)
-          <textarea name="evidencias" rows="4" maxlength="2500" placeholder="Ej.: mensajes, fotografías, audios, constancia médica, nombres de testigos, denuncias previas."></textarea>
-        </label>
+        <fieldset>
+          <legend>3. Descripción de los hechos</legend>
+          <label>¿Qué ocurrió?
+            <textarea name="relato" rows="7" maxlength="6000" placeholder="Puedes incluir qué ocurrió, dónde, cuándo, si hubo amenazas y quiénes estaban presentes."></textarea>
+          </label>
+          <div class="form-grid">
+            <label>Frecuencia aproximada
+              <select name="frecuencia">
+                <option value="">Selecciona</option>
+                <option>Ocurrió una vez</option><option>Ha ocurrido varias veces</option><option>Ocurre con frecuencia</option><option>Está aumentando</option>
+              </select>
+            </label>
+            <label>¿Hay niñas, niños u otras personas dependientes involucradas?
+              <select name="dependientes">
+                <option value="">Selecciona</option><option>Sí</option><option>No</option><option>Prefiero no indicar</option>
+              </select>
+            </label>
+          </div>
+          <label>Evidencias o información disponible (opcional)
+            <textarea name="evidencias" rows="3" placeholder="Mensajes, fotografías, documentos, testigos, atención médica, etc."></textarea>
+          </label>
+        </fieldset>
+
+        <fieldset>
+          <legend>4. Necesidades de atención</legend>
+          <div class="choice-grid">
+            <label class="check"><input type="checkbox" name="necesidad" value="Protección inmediata"> Protección inmediata</label>
+            <label class="check"><input type="checkbox" name="necesidad" value="Atención médica"> Atención médica</label>
+            <label class="check"><input type="checkbox" name="necesidad" value="Orientación legal"> Orientación legal</label>
+            <label class="check"><input type="checkbox" name="necesidad" value="Apoyo psicológico"> Apoyo psicológico</label>
+            <label class="check"><input type="checkbox" name="necesidad" value="Alojamiento o refugio"> Alojamiento / refugio</label>
+            <label class="check"><input type="checkbox" name="necesidad" value="Seguimiento institucional"> Seguimiento</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>5. Atención inclusiva (opcional)</legend>
+          <p class="field-help">Completar esta sección puede ayudar a identificar apoyos que la usuaria desea solicitar. No es obligatorio.</p>
+          <div class="form-grid">
+            <label>Pueblo o comunidad con la que se identifica
+              <select name="pueblo">
+                <option value="">No indicar</option>
+                <option>Garífuna</option><option>Miskitu</option><option>Maya Ch'ortí'</option><option>Lenca</option>
+                <option>Tolupán</option><option>Pech</option><option>Tawahka</option><option>Nahua</option>
+                <option>Negro de Habla Inglesa / Creole</option><option>Otra comunidad</option>
+              </select>
+            </label>
+            <label>Lengua o idioma preferido
+              <input name="idioma" maxlength="100" autocomplete="off">
+            </label>
+          </div>
+          <div class="choice-grid">
+            <label class="check"><input type="checkbox" name="apoyo" value="Intérprete o apoyo lingüístico"> Intérprete / apoyo lingüístico</label>
+            <label class="check"><input type="checkbox" name="apoyo" value="Accesibilidad física"> Accesibilidad física</label>
+            <label class="check"><input type="checkbox" name="apoyo" value="Comunicación accesible"> Comunicación accesible</label>
+            <label class="check"><input type="checkbox" name="apoyo" value="Enfoque intercultural"> Enfoque intercultural</label>
+            <label class="check"><input type="checkbox" name="apoyo" value="Acompañante de confianza"> Acompañante de confianza</label>
+            <label class="check"><input type="checkbox" name="apoyo" value="Otro apoyo específico"> Otro apoyo</label>
+          </div>
+        </fieldset>
 
         <label class="check consent">
-          <input name="consentimiento" type="checkbox" required /> Confirmo que entiendo que este prototipo no presenta una denuncia oficial y que debo utilizar los canales institucionales para activar una respuesta formal.
+          <input type="checkbox" name="confirmacion" required>
+          Entiendo que esta herramienta únicamente genera un resumen y que debo contactar una institución oficial para presentar una denuncia o solicitar atención.
         </label>
 
         <div class="button-row">
-          <button class="primary-btn" type="submit">Enviar al servidor de demostración</button>
+          <button class="primary-btn" type="submit">Generar resumen</button>
           <button id="clearReport" class="ghost-btn" type="button">Borrar formulario</button>
         </div>
       </form>
 
-      <div id="reportResult" class="card result-card hidden" role="status" aria-live="polite"></div>
+      <div id="reportResult" class="generated-card hidden">
+        <div class="generated-head">
+          <div><span class="eyebrow">RESUMEN TEMPORAL</span><h3>Información organizada</h3></div>
+          <div class="button-row no-margin">
+            <button id="copyReport" class="ghost-btn" type="button">Copiar</button>
+            <button id="printReport" class="ghost-btn" type="button">Imprimir</button>
+          </div>
+        </div>
+        <div id="reportText" class="report-text"></div>
+        <div class="next-step">
+          <strong>Siguiente paso</strong>
+          <p>Si es seguro hacerlo, puedes comunicar esta información a una institución oficial. Si existe peligro inmediato, utiliza el 911.</p>
+          <div class="button-row"><a class="primary-btn" href="tel:114">Llamar 1-1-4</a><a class="secondary-btn" href="tel:911">Llamar 911</a></div>
+        </div>
+      </div>
     </section>
 
     <section id="ayuda" class="panel" tabindex="-1">
       <div class="section-heading">
-        <p class="eyebrow">Canales oficiales</p>
-        <h2>¿Dónde pedir ayuda en Honduras?</h2>
+        <span class="eyebrow">HONDURAS</span>
+        <h2>Canales oficiales y ruta básica de atención</h2>
+        <p>La disponibilidad, competencia y horario de cada servicio puede variar. Verifica la información directamente con la institución cuando sea posible.</p>
       </div>
 
-      <div class="grid three">
-        <article class="card contact-card">
+      <div class="contact-grid">
+        <article class="contact-card featured">
           <span class="badge">24/7</span>
           <h3>Línea 1-1-4 “Mujer Vivir Sin Miedo”</h3>
-          <p>Atención, orientación y denuncia para mujeres en situación de violencia.</p>
-          <a class="primary-btn" href="tel:114">Llamar 1-1-4</a>
+          <p>SEMUJER informa que brinda atención, orientación y denuncia; además señala asesoría legal, apoyo psicológico y derivación institucional.</p>
+          <a class="primary-btn full" href="tel:114">Llamar 1-1-4</a>
+          <a class="source-link" href="https://semujer.gob.hn/index.php/2026/03/25/elementor-1762/" target="_blank" rel="noopener noreferrer">Fuente oficial SEMUJER ↗</a>
         </article>
-        <article class="card contact-card">
-          <span class="badge">Emergencias</span>
+
+        <article class="contact-card">
+          <span class="badge red">Emergencia</span>
           <h3>Sistema Nacional de Emergencias 911</h3>
-          <p>Para situaciones que requieren respuesta inmediata y coordinada.</p>
-          <a class="primary-btn" href="tel:911">Llamar 911</a>
+          <p>Para situaciones que requieren respuesta inmediata de los servicios de emergencia.</p>
+          <a class="secondary-btn full" href="tel:911">Llamar 911</a>
+          <a class="source-link" href="https://www.911.gob.hn/" target="_blank" rel="noopener noreferrer">Sitio oficial ↗</a>
         </article>
-        <article class="card contact-card">
+
+        <article class="contact-card">
           <span class="badge">Ministerio Público</span>
-          <h3>FEP-MUJER</h3>
-          <p>Fiscalía Especial de Protección a la Mujer, con competencia nacional.</p>
-          <div class="contact-lines">
-            <a href="tel:+50422215620">2221-5620</a>
-            <a href="tel:+50422213099">2221-3099</a>
+          <h3>Fiscalía Especial de Protección a la Mujer</h3>
+          <p>El Ministerio Público señala competencia nacional en violencia física, psicológica, sexual, patrimonial y económica.</p>
+          <div class="phone-pills">
+            <a href="tel:22215620">2221-5620</a>
+            <a href="tel:22213099">2221-3099</a>
           </div>
+          <a class="source-link" href="https://www.mp.hn/publicaciones/area/fem-fiscalia-especial-de-proteccion-a-la-mujer/" target="_blank" rel="noopener noreferrer">Fuente oficial MP ↗</a>
+        </article>
+
+        <article class="contact-card">
+          <span class="badge">Servicios integrales</span>
+          <h3>Ciudad Mujer</h3>
+          <p>Su sitio oficial presenta módulos de atención y centros en Choloma, Choluteca, Juticalpa, La Ceiba, San Pedro Sula y Tegucigalpa, además de Ciudad Mujer Móvil.</p>
+          <a class="ghost-btn full" href="https://www.ciudadmujer.gob.hn/" target="_blank" rel="noopener noreferrer">Consultar centros ↗</a>
         </article>
       </div>
 
-      <div class="card safety-plan">
-        <h3>Plan básico de seguridad</h3>
-        <ol>
-          <li>Identifica una persona de confianza y una palabra clave para pedir ayuda.</li>
-          <li>Si puedes hacerlo sin aumentar el riesgo, mantén accesibles documentos, medicamentos y contactos importantes.</li>
-          <li>Evita guardar información sensible en dispositivos vigilados por la persona agresora.</li>
-          <li>En peligro inmediato, prioriza salir a un lugar seguro y contactar al 911 o al 1-1-4.</li>
-        </ol>
+      <div class="route-card">
+        <span class="eyebrow">RUTA ORIENTATIVA</span>
+        <h3>¿Qué puedo hacer?</h3>
+        <div class="route-steps">
+          <article><span>1</span><div><strong>Identificar el nivel de urgencia</strong><p>Si hay peligro inmediato, prioriza salir a un lugar seguro y contactar al 911 cuando sea posible.</p></div></article>
+          <article><span>2</span><div><strong>Solicitar orientación</strong><p>La Línea 1-1-4 puede ser un primer canal para orientación y derivación.</p></div></article>
+          <article><span>3</span><div><strong>Buscar atención especializada</strong><p>Dependiendo de la situación, puede requerirse atención médica, psicológica, legal, protección u otros servicios.</p></div></article>
+          <article><span>4</span><div><strong>Presentar o ampliar una denuncia</strong><p>El Ministerio Público y otras autoridades competentes pueden intervenir según el hecho y el procedimiento aplicable.</p></div></article>
+          <article><span>5</span><div><strong>Dar seguimiento</strong><p>Conserva de forma segura cualquier número de caso, constancia o información que la institución te entregue.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="derechos" class="panel" tabindex="-1">
+      <div class="section-heading">
+        <span class="eyebrow">ATENCIÓN DIGNA E INCLUSIVA</span>
+        <h2>La atención debe considerar las necesidades de cada mujer</h2>
+        <p>Las barreras territoriales, lingüísticas, culturales, económicas, de edad o discapacidad pueden afectar el acceso a servicios. Esta aplicación permite indicar apoyos específicos en la pre-denuncia.</p>
+      </div>
+
+      <div class="principle-grid">
+        <article><h3>Trato digno</h3><p>La atención debe evitar humillaciones, culpabilización o prácticas que reproduzcan violencia.</p></article>
+        <article><h3>Privacidad</h3><p>La información sensible debe manejarse con cuidado y únicamente para los fines de atención correspondientes.</p></article>
+        <article><h3>No discriminación</h3><p>La pertenencia étnica, discapacidad, edad, lugar de residencia, situación económica u otra condición no debería convertirse en una barrera para recibir orientación.</p></article>
+        <article><h3>Comprensión</h3><p>La información debe explicarse de forma clara y, cuando se requiera, considerar apoyos de comunicación o lingüísticos.</p></article>
+        <article><h3>Enfoque intercultural</h3><p>En mujeres indígenas y afrohondureñas, la respuesta debe considerar contexto territorial, lengua, prácticas culturales y riesgos específicos sin imponer estereotipos.</p></article>
+        <article><h3>Accesibilidad</h3><p>Las mujeres con discapacidad pueden requerir ajustes de comunicación, movilidad, acompañamiento u otras medidas para participar en igualdad.</p></article>
+      </div>
+
+      <div class="population-sections">
+        <details>
+          <summary>Mujeres indígenas y afrohondureñas</summary>
+          <div><p>Puede ser importante registrar, si la mujer desea hacerlo, su lengua preferida, necesidad de intérprete, comunidad, barreras territoriales y apoyos de confianza. La pertenencia a un pueblo no debe presumirse ni utilizarse para limitar su autonomía.</p></div>
+        </details>
+        <details>
+          <summary>Mujeres con discapacidad</summary>
+          <div><p>La atención puede requerir formatos accesibles, lectura fácil, lengua de señas, apoyo para movilidad u otras adaptaciones. El apoyo no debe sustituir la voluntad de la mujer.</p></div>
+        </details>
+        <details>
+          <summary>Adolescentes y niñas</summary>
+          <div><p>Las situaciones que involucran niñas y adolescentes requieren salvaguardas reforzadas y la intervención de las autoridades competentes según el caso.</p></div>
+        </details>
+        <details>
+          <summary>Mujeres rurales o en zonas de difícil acceso</summary>
+          <div><p>La distancia, conectividad y disponibilidad de transporte pueden afectar la búsqueda de ayuda. El plan de seguridad puede incluir rutas alternativas, personas de confianza y canales telefónicos.</p></div>
+        </details>
+      </div>
+
+      <div class="faq-card">
+        <span class="eyebrow">PREGUNTAS FRECUENTES</span>
+        <h3>Información rápida</h3>
+        <details><summary>¿Necesito tener pruebas para pedir orientación?</summary><p>No necesitas reunir pruebas para solicitar orientación o ayuda. No te expongas a un riesgo mayor para conseguirlas.</p></details>
+        <details><summary>¿Esta app presenta una denuncia?</summary><p>No. Esta versión genera información de apoyo y un resumen temporal. Para una denuncia oficial debes utilizar los canales de las autoridades competentes.</p></details>
+        <details><summary>¿La aplicación guarda lo que escribo?</summary><p>No utiliza localStorage ni sessionStorage y los formularios funcionan únicamente durante la sesión abierta. Sin embargo, el dispositivo, navegador o red pueden tener sus propios registros.</p></details>
+        <details><summary>¿Puedo instalarla en mi teléfono?</summary><p>Si el navegador admite aplicaciones web progresivas, puede ofrecer la opción de instalarla. También puedes agregar el sitio a la pantalla de inicio.</p></details>
+      </div>
+
+      <div class="sources-card">
+        <h3>Fuentes institucionales incorporadas</h3>
+        <ul>
+          <li><a href="https://semujer.gob.hn/index.php/2026/03/25/elementor-1762/" target="_blank" rel="noopener noreferrer">SEMUJER — Línea 1-1-4 “Mujer Vivir Sin Miedo”</a></li>
+          <li><a href="https://www.mp.hn/publicaciones/area/fem-fiscalia-especial-de-proteccion-a-la-mujer/" target="_blank" rel="noopener noreferrer">Ministerio Público — FEP-MUJER</a></li>
+          <li><a href="https://www.911.gob.hn/" target="_blank" rel="noopener noreferrer">Sistema Nacional de Emergencias 911</a></li>
+          <li><a href="https://www.ciudadmujer.gob.hn/" target="_blank" rel="noopener noreferrer">Ciudad Mujer Honduras</a></li>
+        </ul>
       </div>
     </section>
   </main>
 
+  <button id="installApp" class="install-fab hidden" type="button">Instalar app</button>
+
+  <nav class="mobile-nav" aria-label="Navegación móvil">
+    <button class="mobile-tab active" data-target="inicio" type="button"><span>⌂</span>Inicio</button>
+    <button class="mobile-tab" data-target="riesgo" type="button"><span>!</span>Riesgo</button>
+    <button class="mobile-tab" data-target="denuncia" type="button"><span>✎</span>Denuncia</button>
+    <button class="mobile-tab" data-target="ayuda" type="button"><span>☎</span>Ayuda</button>
+  </nav>
+
   <footer class="footer">
-    <p>Prototipo educativo. Para despliegue institucional se requiere validación jurídica, protocolo de derivación, seguridad informática, protección de datos y convenio con las instituciones receptoras.</p>
+    <strong>Vivir Segura</strong>
+    <p>Prototipo de demostración para prevención y orientación. La información institucional debe revisarse periódicamente antes de una implementación oficial.</p>
   </footer>
 
-  <script src="app.js" defer></script>
+  <script src="./app.js"></script>
 </body>
 </html>
