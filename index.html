@@ -27,34 +27,104 @@
   </div>
 
   <header class="topbar">
-    <div class="brand" aria-label="Vivir Segura">
-      <div class="brand-mark" aria-hidden="true">VS</div>
+    <a class="brand" href="#" data-go="inicio" aria-label="Vivir Segura - SEMUJER, ir al inicio">
+      <img class="official-logo" src="./semujer-logo-oficial.png" alt="">
       <div class="brand-copy">
+        <span class="institution-name">SEMUJER</span>
         <strong>Vivir Segura</strong>
-        <span>Información, prevención y orientación</span>
+        <span class="prototype-label">Prototipo institucional</span>
       </div>
-    </div>
+    </a>
 
-    <div class="top-actions">
+    <div class="top-actions desktop-actions" aria-label="Herramientas de accesibilidad">
       <button id="fontDown" class="utility-btn" type="button" aria-label="Reducir tamaño del texto">A−</button>
       <button id="fontUp" class="utility-btn" type="button" aria-label="Aumentar tamaño del texto">A+</button>
       <button id="contrastToggle" class="utility-btn" type="button" aria-pressed="false">Contraste</button>
+      <button id="easyReadToggle" class="utility-btn" type="button" aria-pressed="false">Lectura fácil</button>
       <button id="discreetMode" class="utility-btn" type="button">Modo discreto</button>
       <button id="quickExit" class="danger-btn" type="button">Salida rápida</button>
     </div>
+
+    <div class="mobile-header-actions">
+      <button id="mobileAccessButton" class="icon-btn" type="button" aria-label="Opciones de accesibilidad">Aa</button>
+      <button id="mobileQuickExit" class="icon-btn danger-icon" type="button" aria-label="Salida rápida">Salir</button>
+      <button id="mobileMenuButton" class="menu-btn" type="button"
+              aria-expanded="false" aria-controls="mobileDrawer">
+        <span aria-hidden="true">☰</span>
+        <span>Menú</span>
+      </button>
+    </div>
   </header>
 
+
+  <div id="drawerBackdrop" class="drawer-backdrop hidden" aria-hidden="true"></div>
+  <aside id="mobileDrawer" class="mobile-drawer" aria-hidden="true" aria-label="Menú principal">
+    <div class="drawer-head">
+      <div class="drawer-brand">
+        <img src="./semujer-logo-oficial.png" alt="Logotipo de SEMUJER">
+        <div>
+          <strong>Vivir Segura</strong>
+          <span>SEMUJER · Prototipo</span>
+        </div>
+      </div>
+      <button id="closeDrawer" class="icon-btn" type="button" aria-label="Cerrar menú">✕</button>
+    </div>
+
+    <div class="drawer-emergency">
+      <strong>¿Necesitas ayuda inmediata?</strong>
+      <div class="drawer-emergency-actions">
+        <a href="tel:911">911</a>
+        <a href="tel:114">1-1-4</a>
+      </div>
+    </div>
+
+    <nav class="drawer-nav" aria-label="Secciones">
+      <button data-target="inicio" type="button"><span>⌂</span><div><strong>Inicio</strong><small>Accesos rápidos</small></div></button>
+      <button data-target="aprender" type="button"><span>A</span><div><strong>Aprender</strong><small>Información y conceptos</small></div></button>
+      <button data-target="identificar" type="button"><span>?</span><div><strong>Identificar</strong><small>Señales de violencia</small></div></button>
+      <button data-target="riesgo" type="button"><span>!</span><div><strong>Evaluar riesgo</strong><small>Guía orientativa</small></div></button>
+      <button data-target="plan" type="button"><span>✓</span><div><strong>Plan de seguridad</strong><small>Preparar acciones seguras</small></div></button>
+      <button data-target="denuncia" type="button"><span>✎</span><div><strong>Pre-denuncia</strong><small>Organizar información</small></div></button>
+      <button data-target="ayuda" type="button"><span>☎</span><div><strong>Dónde acudir</strong><small>Canales e instituciones</small></div></button>
+      <button data-target="derechos" type="button"><span>i</span><div><strong>Derechos y recursos</strong><small>Atención digna e inclusiva</small></div></button>
+    </nav>
+
+    <section class="drawer-section" aria-labelledby="drawerAccessTitle">
+      <h2 id="drawerAccessTitle">Accesibilidad</h2>
+      <div class="drawer-tools">
+        <button id="drawerFontDown" type="button">A− <small>Texto menor</small></button>
+        <button id="drawerFontUp" type="button">A+ <small>Texto mayor</small></button>
+        <button id="drawerContrast" type="button" aria-pressed="false">◐ <small>Alto contraste</small></button>
+        <button id="drawerEasyRead" type="button" aria-pressed="false">≡ <small>Lectura fácil</small></button>
+      </div>
+    </section>
+
+    <section class="drawer-install">
+      <div>
+        <strong>Instalar Vivir Segura</strong>
+        <p>Agrega la aplicación a la pantalla de inicio sin ocupar espacio sobre el contenido.</p>
+      </div>
+      <button id="drawerInstallApp" class="primary-btn" type="button">Instalar</button>
+    </section>
+
+    <p class="drawer-disclaimer">Prototipo para presentación institucional. No recibe denuncias oficiales.</p>
+  </aside>
+
   <main id="contenido" class="container">
-    <section class="hero">
+    <section class="hero branded-hero">
       <div class="hero-copy">
-        <span class="eyebrow">PROTOTIPO • HONDURAS</span>
-        <h1>Información, educación y herramientas para reconocer la violencia y buscar apoyo.</h1>
-        <p>Aprende sobre las violencias contra las mujeres, consulta señales, valora riesgos, prepara un plan de seguridad y organiza información para solicitar ayuda o presentar una denuncia.</p>
+        <div class="hero-institution">
+          <span class="official-kicker">Secretaría de Estado en el Despacho de Asuntos de la Mujer</span>
+          <span class="prototype-chip">Prototipo para presentación</span>
+        </div>
+        <span class="eyebrow">VIVIR SEGURA · HONDURAS</span>
+        <h1>Información, orientación y herramientas para una vida libre de violencias.</h1>
+        <p>Una propuesta digital de SEMUJER para facilitar información, reconocer señales de violencia, valorar riesgos, preparar un plan de seguridad y conocer rutas de atención.</p>
         <div class="hero-actions">
           <button class="primary-btn" data-go="riesgo" type="button">Evaluar mi situación</button>
-          <button class="ghost-btn" data-go="ayuda" type="button">Buscar ayuda</button>
+          <button class="ghost-btn" data-go="aprender" type="button">Aprender sobre violencia</button>
         </div>
-        <p class="microcopy">No se guardan en este sitio los datos que escribas en los formularios.</p>
+        <p class="hero-motto">“Libre de violencias, con derechos y autonomía”</p>
       </div>
 
       <aside class="emergency-card" aria-label="Ayuda inmediata">
@@ -63,13 +133,29 @@
         <p>Si puedes hacerlo sin aumentar el riesgo, utiliza un teléfono seguro.</p>
         <a class="emergency-call" href="tel:911"><span>Emergencias</span><strong>911</strong></a>
         <a class="emergency-call alt" href="tel:114"><span>Línea Mujer Vivir Sin Miedo</span><strong>1-1-4</strong></a>
-        <small>La Línea 1-1-4 es reportada por SEMUJER como gratuita, confidencial y disponible 24/7.</small>
+        <small>Accesos visibles y de gran tamaño para facilitar su uso en situaciones de urgencia.</small>
       </aside>
     </section>
 
     <div class="notice">
       <strong>Importante:</strong> esta es una herramienta de demostración. No sustituye a una evaluación profesional y todavía no envía denuncias oficialmente a ninguna institución.
     </div>
+
+
+    <section class="quick-guide" aria-labelledby="quickGuideTitle">
+      <div class="quick-guide-head">
+        <span class="eyebrow">GUÍA RÁPIDA</span>
+        <h2 id="quickGuideTitle">¿Qué necesitas hacer ahora?</h2>
+        <p>Elige una opción y te mostraremos un camino sencillo.</p>
+      </div>
+      <div class="quick-guide-options" role="group" aria-label="Opciones de orientación rápida">
+        <button type="button" data-quick="danger"><span>!</span><strong>Estoy en peligro ahora</strong><small>Necesito ayuda inmediata</small></button>
+        <button type="button" data-quick="identify"><span>?</span><strong>No sé si esto es violencia</strong><small>Quiero reconocer señales</small></button>
+        <button type="button" data-quick="report"><span>✎</span><strong>Quiero denunciar</strong><small>Necesito saber qué preparar</small></button>
+        <button type="button" data-quick="support"><span>♡</span><strong>Quiero ayudar a alguien</strong><small>Una amiga o familiar me contó algo</small></button>
+      </div>
+      <div id="quickGuideResult" class="quick-guide-result hidden" role="status" aria-live="polite"></div>
+    </section>
 
     <nav class="tabs" aria-label="Secciones principales">
       <button class="tab active" data-target="inicio" type="button">Inicio</button>
@@ -138,6 +224,20 @@
           <button class="text-btn" data-go="derechos" type="button">Ver información →</button>
         </article>
       </div>
+
+
+      <section class="install-card" aria-labelledby="installTitle">
+        <div class="install-visual" aria-hidden="true">＋</div>
+        <div>
+          <span class="eyebrow">INSTALACIÓN</span>
+          <h3 id="installTitle">Llévala en tu teléfono sin tapar la pantalla</h3>
+          <p>La opción de instalación está aquí y dentro del menú desplegable. Ya no aparece como botón flotante sobre el contenido.</p>
+        </div>
+        <button id="installApp" class="primary-btn" type="button">Instalar app</button>
+        <p id="installHelp" class="install-help hidden" role="status">
+          Si tu navegador no muestra instalación automática, abre el menú del navegador y elige “Agregar a pantalla de inicio” o “Instalar aplicación”.
+        </p>
+      </section>
 
       <div class="split-card">
         <div>
@@ -989,20 +1089,15 @@
       </div>
     </section>
   </main>
-
-  <button id="installApp" class="install-fab hidden" type="button">Instalar app</button>
-
-  <nav class="mobile-nav" aria-label="Navegación móvil">
-    <button class="mobile-tab active" data-target="inicio" type="button"><span>⌂</span>Inicio</button>
-    <button class="mobile-tab" data-target="aprender" type="button"><span>A</span>Aprender</button>
-    <button class="mobile-tab" data-target="riesgo" type="button"><span>!</span>Riesgo</button>
-    <button class="mobile-tab" data-target="denuncia" type="button"><span>✎</span>Denuncia</button>
-    <button class="mobile-tab" data-target="ayuda" type="button"><span>☎</span>Ayuda</button>
-  </nav>
-
-  <footer class="footer">
-    <strong>Vivir Segura</strong>
-    <p>Prototipo de demostración para prevención y orientación. La información institucional debe revisarse periódicamente antes de una implementación oficial.</p>
+<footer class="footer institutional-footer">
+    <div class="footer-brand">
+      <img src="./semujer-logo-oficial.png" alt="SEMUJER">
+      <div>
+        <strong>Vivir Segura</strong>
+        <span>Propuesta digital para prevención, orientación y acceso a información</span>
+      </div>
+    </div>
+    <p><strong>Prototipo de presentación.</strong> No constituye todavía un canal oficial de recepción de denuncias. La identidad visual toma como referencia el logotipo publicado por SEMUJER.</p>
   </footer>
 
   <script src="./app.js"></script>

@@ -22,6 +22,81 @@
   $$("[data-target]").forEach(btn => btn.addEventListener("click", () => showPanel(btn.dataset.target)));
   $$("[data-go]").forEach(btn => btn.addEventListener("click", () => showPanel(btn.dataset.go)));
 
+  // Menú móvil desplegable: no ocupa espacio sobre el contenido mientras está cerrado.
+  const mobileDrawer = $("#mobileDrawer");
+  const drawerBackdrop = $("#drawerBackdrop");
+  const mobileMenuButton = $("#mobileMenuButton");
+  const closeDrawerButton = $("#closeDrawer");
+  let lastDrawerFocus = null;
+
+  function openDrawer() {
+    if (!mobileDrawer) return;
+    lastDrawerFocus = document.activeElement;
+    mobileDrawer.classList.add("open");
+    mobileDrawer.setAttribute("aria-hidden", "false");
+    drawerBackdrop?.classList.remove("hidden");
+    drawerBackdrop?.setAttribute("aria-hidden", "false");
+    mobileMenuButton?.setAttribute("aria-expanded", "true");
+    document.body.classList.add("drawer-open");
+    closeDrawerButton?.focus();
+  }
+
+  function closeDrawer() {
+    if (!mobileDrawer) return;
+    mobileDrawer.classList.remove("open");
+    mobileDrawer.setAttribute("aria-hidden", "true");
+    drawerBackdrop?.classList.add("hidden");
+    drawerBackdrop?.setAttribute("aria-hidden", "true");
+    mobileMenuButton?.setAttribute("aria-expanded", "false");
+    document.body.classList.remove("drawer-open");
+    if (lastDrawerFocus && typeof lastDrawerFocus.focus === "function") lastDrawerFocus.focus();
+  }
+
+  mobileMenuButton?.addEventListener("click", openDrawer);
+  closeDrawerButton?.addEventListener("click", closeDrawer);
+  drawerBackdrop?.addEventListener("click", closeDrawer);
+  $$(".drawer-nav [data-target]").forEach(btn => btn.addEventListener("click", closeDrawer));
+
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape" && mobileDrawer?.classList.contains("open")) closeDrawer();
+  });
+
+  // Guía rápida: respuestas orientativas y simples.
+  const quickGuideResult = $("#quickGuideResult");
+  const quickGuideContent = {
+    danger: {
+      title: "Prioriza tu seguridad inmediata",
+      body: "Si existe peligro ahora, intenta dirigirte a un lugar seguro cuando sea posible. Si puedes llamar sin aumentar el riesgo, utiliza el 911. También puedes comunicarte con la Línea 1-1-4 para orientación.",
+      actions: '<a class="secondary-btn" href="tel:911">Llamar 911</a><a class="primary-btn" href="tel:114">Llamar 1-1-4</a><button class="ghost-btn" type="button" data-quick-go="plan">Ver plan de seguridad</button>'
+    },
+    identify: {
+      title: "Puedes empezar reconociendo señales",
+      body: "La violencia no se limita a los golpes. Puede incluir control, amenazas, coerción sexual, vigilancia, humillación, control económico o agresiones digitales.",
+      actions: '<button class="primary-btn" type="button" data-quick-go="identificar">Ver señales</button><button class="ghost-btn" type="button" data-quick-go="aprender">Aprender conceptos</button>'
+    },
+    report: {
+      title: "Organiza lo esencial antes de acudir",
+      body: "Puedes preparar una cronología sencilla, los hechos que deseas comunicar, fechas aproximadas, necesidades de protección y cualquier evidencia que ya tengas de forma segura. No te expongas para conseguir pruebas.",
+      actions: '<button class="primary-btn" type="button" data-quick-go="denuncia">Preparar pre-denuncia</button><button class="ghost-btn" type="button" data-quick-go="ayuda">Ver dónde acudir</button>'
+    },
+    support: {
+      title: "Escucha, no juzgues y pregunta qué necesita",
+      body: "Evita presionar a la persona para tomar una decisión. Puedes ayudarle a identificar opciones, acompañarla y respetar su privacidad, siempre priorizando su seguridad.",
+      actions: '<button class="primary-btn" type="button" data-quick-go="aprender">Cómo apoyar a otra mujer</button><button class="ghost-btn" type="button" data-quick-go="plan">Ver plan de seguridad</button>'
+    }
+  };
+
+  $$("[data-quick]").forEach(btn => btn.addEventListener("click", () => {
+    const item = quickGuideContent[btn.dataset.quick];
+    if (!item || !quickGuideResult) return;
+    quickGuideResult.innerHTML = `<h3>${item.title}</h3><p>${item.body}</p><div class="button-row">${item.actions}</div>`;
+    quickGuideResult.classList.remove("hidden");
+    $$("[data-quick-go]", quickGuideResult).forEach(action =>
+      action.addEventListener("click", () => showPanel(action.dataset.quickGo))
+    );
+    quickGuideResult.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }));
+
   const topicSearch = $("#topicSearch");
   const topicCategory = $("#topicCategory");
   const learningCards = $$(".learning-topic");
@@ -56,10 +131,12 @@
   if (topicSearch) topicSearch.addEventListener("input", filterLearningTopics);
   if (topicCategory) topicCategory.addEventListener("change", filterLearningTopics);
 
-  $("#quickExit").addEventListener("click", () => {
+  function quickExit() {
     document.title = "Google";
     window.location.replace("https://www.google.com/");
-  });
+  }
+  $("#quickExit")?.addEventListener("click", quickExit);
+  $("#mobileQuickExit")?.addEventListener("click", quickExit);
 
   const discreetCover = $("#discreetCover");
   $("#discreetMode").addEventListener("click", () => {
@@ -77,12 +154,36 @@
   function applyFontScale() {
     document.documentElement.style.setProperty("--font-scale", fontScale.toFixed(2));
   }
-  $("#fontUp").addEventListener("click", () => { fontScale = Math.min(1.3, fontScale + .1); applyFontScale(); });
-  $("#fontDown").addEventListener("click", () => { fontScale = Math.max(.9, fontScale - .1); applyFontScale(); });
-
-  $("#contrastToggle").addEventListener("click", (event) => {
+  function increaseFont() { fontScale = Math.min(1.35, fontScale + .1); applyFontScale(); }
+  function decreaseFont() { fontScale = Math.max(.9, fontScale - .1); applyFontScale(); }
+  function toggleContrast() {
     const enabled = document.body.classList.toggle("high-contrast");
-    event.currentTarget.setAttribute("aria-pressed", String(enabled));
+    ["contrastToggle", "drawerContrast"].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.setAttribute("aria-pressed", String(enabled));
+    });
+  }
+  function toggleEasyRead() {
+    const enabled = document.body.classList.toggle("easy-read");
+    ["easyReadToggle", "drawerEasyRead"].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.setAttribute("aria-pressed", String(enabled));
+    });
+  }
+
+  $("#fontUp")?.addEventListener("click", increaseFont);
+  $("#fontDown")?.addEventListener("click", decreaseFont);
+  $("#drawerFontUp")?.addEventListener("click", increaseFont);
+  $("#drawerFontDown")?.addEventListener("click", decreaseFont);
+  $("#contrastToggle")?.addEventListener("click", toggleContrast);
+  $("#drawerContrast")?.addEventListener("click", toggleContrast);
+  $("#easyReadToggle")?.addEventListener("click", toggleEasyRead);
+  $("#drawerEasyRead")?.addEventListener("click", toggleEasyRead);
+
+  // Acceso móvil a preferencias: abre el mismo menú en la sección de accesibilidad.
+  $("#mobileAccessButton")?.addEventListener("click", () => {
+    openDrawer();
+    setTimeout(() => document.querySelector(".drawer-section")?.scrollIntoView({ behavior: "smooth", block: "start" }), 80);
   });
 
   const signalForm = $("#signalForm");
@@ -299,20 +400,29 @@ NOTA: Este resumen fue generado por una herramienta de demostración y no consti
 
   let deferredPrompt = null;
   const installButton = $("#installApp");
+  const drawerInstallButton = $("#drawerInstallApp");
+  const installHelp = $("#installHelp");
 
   window.addEventListener("beforeinstallprompt", (event) => {
     event.preventDefault();
     deferredPrompt = event;
-    installButton.classList.remove("hidden");
   });
 
-  installButton.addEventListener("click", async () => {
-    if (!deferredPrompt) return;
-    deferredPrompt.prompt();
-    await deferredPrompt.userChoice;
-    deferredPrompt = null;
-    installButton.classList.add("hidden");
-  });
+  async function requestInstall() {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      deferredPrompt = null;
+      closeDrawer();
+      return;
+    }
+    installHelp?.classList.remove("hidden");
+    installHelp?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    closeDrawer();
+  }
+
+  installButton?.addEventListener("click", requestInstall);
+  drawerInstallButton?.addEventListener("click", requestInstall);
 
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {

@@ -1,4 +1,4 @@
-const CACHE = "vivir-segura-v3-20260818";
+const CACHE = "vivir-segura-v4-semujer-20260818";
 const ASSETS = [
   "./",
   "./index.html",
@@ -6,7 +6,8 @@ const ASSETS = [
   "./app.js",
   "./manifest.webmanifest",
   "./icon-192.png",
-  "./icon-512.png"
+  "./icon-512.png",
+  "./semujer-logo-oficial.png"
 ];
 
 self.addEventListener("install", event => {

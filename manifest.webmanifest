@@ -1,12 +1,12 @@
 {
-  "name": "Vivir Segura",
+  "name": "Vivir Segura - SEMUJER",
   "short_name": "Vivir Segura",
   "lang": "es-HN",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#f6f2f7",
-  "theme_color": "#6d2b74",
+  "background_color": "#f8f6f1",
+  "theme_color": "#a47e2c",
   "description": "Orientación, prevención, evaluación básica de riesgo, plan de seguridad y preparación de información sobre violencia contra las mujeres en Honduras.",
   "icons": [
     {
