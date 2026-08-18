@@ -1,44 +1,26 @@
-# Vivir Segura — V4 SEMUJER (prototipo de presentación)
+# Vivir Segura — V5 móvil corregida
 
-Versión optimizada para presentación institucional y GitHub Pages.
+Esta versión corrige específicamente el problema observado en teléfonos donde el HTML V4 se estaba mezclando con estilos V3 almacenados en caché.
 
-## Cambios principales de esta versión
-- Identidad visual basada en el logotipo actualmente publicado por SEMUJER.
-- Paleta principal en dorado SEMUJER, blanco, arena y tonos neutros.
-- Etiqueta visible de “Prototipo institucional” para no confundir la demostración con un servicio oficial.
-- Eliminación del menú fijo inferior en celular.
-- Nuevo menú móvil desplegable (drawer), que no tapa contenido cuando está cerrado.
-- Botón “Instalar app” movido al contenido de Inicio y al menú desplegable.
-- Guía rápida interactiva según la necesidad de la usuaria.
-- Accesibilidad mejorada:
-  - controles de tamaño de texto;
-  - alto contraste;
-  - modo de lectura fácil;
-  - botones táctiles de mayor tamaño;
-  - navegación por teclado;
-  - cierre del menú con Escape;
-  - etiquetas ARIA;
-  - salida rápida disponible desde el encabezado.
-- Logo de SEMUJER incluido localmente como referencia visual.
-- Íconos PWA “VS” en dorado para distinguir el prototipo de una aplicación oficialmente autorizada.
+## Cambios técnicos clave
+- Los archivos principales ahora tienen nombres nuevos: `styles-v5.css`, `app-v5.js`, `manifest-v5.webmanifest`, `sw-v5.js`.
+- El navegador ya no puede reutilizar por error el CSS antiguo con el HTML nuevo.
+- Se limpian cachés de versiones anteriores.
+- Se agregó CSS crítico dentro del propio `index.html` para mantener el menú lateral oculto y el logo pequeño incluso si falla la hoja de estilos externa.
+- Se usan copias reducidas del logo para que nunca aparezca gigante por su tamaño natural.
 
-## Archivos para subir a GitHub Pages
-- index.html
-- styles.css
-- app.js
-- manifest.webmanifest
-- sw.js
-- icon-192.png
-- icon-512.png
-- semujer-logo-oficial.png
-- README.md
+## Mejoras móviles
+- Encabezado compacto.
+- Menú lateral de máximo 92% del ancho, en una sola columna.
+- El menú permanece fuera de pantalla hasta tocar `Menú`.
+- Sin barra inferior fija.
+- Sin botón flotante de instalación.
+- Instalación disponible dentro del menú y en escritorio.
+- Portada móvil simplificada.
+- Botones grandes, campos de 16 px para evitar zoom automático y mejor uso con una sola mano.
+- Se oculta la portada grande de escritorio en pantallas pequeñas.
 
-## Publicación
-En GitHub:
-Settings > Pages > Deploy from a branch > main > /(root)
+## Archivos que debes subir
+Sube todos los archivos de este ZIP a la raíz de tu repositorio y elimina los archivos anteriores que tengan el mismo propósito.
 
-## Nota institucional
-Esta versión es un prototipo de presentación. No recibe denuncias oficiales y no debe presentarse al público como un canal operativo hasta contar con validación institucional, seguridad, infraestructura y rutas oficiales de recepción y seguimiento.
-
-## Referencia del logotipo
-Archivo tomado del logotipo publicado en el sitio oficial de SEMUJER el 18 de agosto de 2026.
+Después de hacer Commit, abre la app una vez con el navegador actualizado. Esta V5 está diseñada para migrar automáticamente fuera de la caché anterior.

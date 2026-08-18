@@ -3,12 +3,25 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#6d2b74">
+  <meta name="theme-color" content="#a47e2c">
   <meta name="description" content="Vivir Segura: prototipo de orientación, prevención, seguridad y preparación de información sobre violencia contra las mujeres en Honduras.">
   <title>Vivir Segura</title>
-  <link rel="manifest" href="./manifest.webmanifest">
-  <link rel="icon" href="./icon-192.png" type="image/png">
-  <link rel="stylesheet" href="./styles.css">
+  <link rel="manifest" href="./manifest-v5.webmanifest">
+  <link rel="icon" href="./icon-192.png?v=5" type="image/png">
+  <link rel="stylesheet" href="./styles-v5.css">
+
+  <style id="critical-mobile-v5">
+    html,body{max-width:100%;overflow-x:hidden}
+    img{max-width:100%;height:auto}
+    .hidden{display:none!important}
+    .official-logo{width:52px!important;height:auto!important;max-width:52px!important;object-fit:contain}
+    .drawer-brand img{width:64px!important;height:auto!important;max-width:64px!important;object-fit:contain}
+    .mobile-drawer{position:fixed!important;top:0!important;right:0!important;bottom:0!important;width:min(380px,92vw)!important;max-width:92vw!important;height:100dvh!important;overflow-y:auto!important;transform:translateX(105%)!important;z-index:2000!important;background:#fff!important}
+    .mobile-drawer.open{transform:translateX(0)!important}
+    .drawer-backdrop{position:fixed!important;inset:0!important;z-index:1990!important;background:rgba(0,0,0,.48)!important}
+    @media(max-width:900px){.desktop-actions,.tabs{display:none!important}.mobile-header-actions{display:flex!important}.topbar{min-height:64px!important}.container{width:min(100% - 16px,1180px)!important}}
+    @media(min-width:901px){.mobile-header-actions{display:none!important}}
+  </style>
 </head>
 <body>
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -28,7 +41,7 @@
 
   <header class="topbar">
     <a class="brand" href="#" data-go="inicio" aria-label="Vivir Segura - SEMUJER, ir al inicio">
-      <img class="official-logo" src="./semujer-logo-oficial.png" alt="">
+      <img class="official-logo" src="./semujer-logo-header-v5.png" alt="">
       <div class="brand-copy">
         <span class="institution-name">SEMUJER</span>
         <strong>Vivir Segura</strong>
@@ -42,6 +55,7 @@
       <button id="contrastToggle" class="utility-btn" type="button" aria-pressed="false">Contraste</button>
       <button id="easyReadToggle" class="utility-btn" type="button" aria-pressed="false">Lectura fácil</button>
       <button id="discreetMode" class="utility-btn" type="button">Modo discreto</button>
+      <button id="desktopInstallApp" class="utility-btn install-top" type="button">Instalar</button>
       <button id="quickExit" class="danger-btn" type="button">Salida rápida</button>
     </div>
 
@@ -61,7 +75,7 @@
   <aside id="mobileDrawer" class="mobile-drawer" aria-hidden="true" aria-label="Menú principal">
     <div class="drawer-head">
       <div class="drawer-brand">
-        <img src="./semujer-logo-oficial.png" alt="Logotipo de SEMUJER">
+        <img src="./semujer-logo-header-v5.png" alt="Logotipo de SEMUJER">
         <div>
           <strong>Vivir Segura</strong>
           <span>SEMUJER · Prototipo</span>
@@ -102,15 +116,26 @@
     <section class="drawer-install">
       <div>
         <strong>Instalar Vivir Segura</strong>
-        <p>Agrega la aplicación a la pantalla de inicio sin ocupar espacio sobre el contenido.</p>
+        <p>Agrega Vivir Segura a la pantalla de inicio.</p>
       </div>
       <button id="drawerInstallApp" class="primary-btn" type="button">Instalar</button>
+      <p id="installHelp" class="drawer-install-help hidden" role="status">Si no aparece la instalación automática, abre el menú de Chrome y selecciona “Agregar a pantalla principal” o “Instalar aplicación”.</p>
     </section>
 
     <p class="drawer-disclaimer">Prototipo para presentación institucional. No recibe denuncias oficiales.</p>
   </aside>
 
   <main id="contenido" class="container">
+    <section class="mobile-welcome" aria-label="Presentación de Vivir Segura">
+      <span class="eyebrow">SEMUJER · PROTOTIPO</span>
+      <h1>Vivir Segura</h1>
+      <p>Información y orientación para una vida libre de violencias.</p>
+      <div class="mobile-welcome-actions">
+        <button class="primary-btn" data-go="riesgo" type="button">Evaluar situación</button>
+        <button class="ghost-btn" data-go="ayuda" type="button">Buscar ayuda</button>
+      </div>
+    </section>
+
     <section class="hero branded-hero">
       <div class="hero-copy">
         <div class="hero-institution">
@@ -224,21 +249,6 @@
           <button class="text-btn" data-go="derechos" type="button">Ver información →</button>
         </article>
       </div>
-
-
-      <section class="install-card" aria-labelledby="installTitle">
-        <div class="install-visual" aria-hidden="true">＋</div>
-        <div>
-          <span class="eyebrow">INSTALACIÓN</span>
-          <h3 id="installTitle">Llévala en tu teléfono sin tapar la pantalla</h3>
-          <p>La opción de instalación está aquí y dentro del menú desplegable. Ya no aparece como botón flotante sobre el contenido.</p>
-        </div>
-        <button id="installApp" class="primary-btn" type="button">Instalar app</button>
-        <p id="installHelp" class="install-help hidden" role="status">
-          Si tu navegador no muestra instalación automática, abre el menú del navegador y elige “Agregar a pantalla de inicio” o “Instalar aplicación”.
-        </p>
-      </section>
-
       <div class="split-card">
         <div>
           <span class="eyebrow">PRIVACIDAD</span>
@@ -1091,7 +1101,7 @@
   </main>
 <footer class="footer institutional-footer">
     <div class="footer-brand">
-      <img src="./semujer-logo-oficial.png" alt="SEMUJER">
+      <img src="./semujer-logo-footer-v5.png" alt="SEMUJER">
       <div>
         <strong>Vivir Segura</strong>
         <span>Propuesta digital para prevención, orientación y acceso a información</span>
@@ -1100,6 +1110,6 @@
     <p><strong>Prototipo de presentación.</strong> No constituye todavía un canal oficial de recepción de denuncias. La identidad visual toma como referencia el logotipo publicado por SEMUJER.</p>
   </footer>
 
-  <script src="./app.js"></script>
+  <script src="./app-v5.js"></script>
 </body>
 </html>
