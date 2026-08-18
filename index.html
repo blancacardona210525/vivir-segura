@@ -1,0 +1,141 @@
+import json
+import os
+import re
+import secrets
+import sqlite3
+from datetime import datetime, timezone
+from pathlib import Path
+
+from cryptography.fernet import Fernet
+from fastapi import FastAPI, HTTPException, Request
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
+from pydantic import BaseModel, Field, field_validator
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+DB_PATH = Path(os.getenv("REPORT_DB_PATH", BASE_DIR / "backend" / "reportes.db"))
+FERNET_KEY = os.getenv("REPORT_FERNET_KEY")
+
+if not FERNET_KEY:
+    key_file = BASE_DIR / "backend" / ".demo_fernet_key"
+    if key_file.exists():
+        FERNET_KEY = key_file.read_text(encoding="utf-8").strip()
+    else:
+        FERNET_KEY = Fernet.generate_key().decode("utf-8")
+        key_file.write_text(FERNET_KEY, encoding="utf-8")
+        try:
+            os.chmod(key_file, 0o600)
+        except OSError:
+            pass
+
+fernet = Fernet(FERNET_KEY.encode("utf-8"))
+app = FastAPI(title="Vivir Segura API", version="0.1.0", docs_url=None, redoc_url=None)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[origin for origin in os.getenv("ALLOWED_ORIGINS", "http://localhost:8000,http://127.0.0.1:8000").split(",") if origin],
+    allow_credentials=False,
+    allow_methods=["POST", "GET"],
+    allow_headers=["Content-Type"],
+)
+
+class Reporte(BaseModel):
+    alias: str | None = Field(default=None, max_length=120)
+    edad: int | None = Field(default=None, ge=0, le=120)
+    departamento: str = Field(min_length=2, max_length=80)
+    localidad: str | None = Field(default=None, max_length=120)
+    tipos: list[str] = Field(default_factory=list, max_length=10)
+    relato: str = Field(min_length=5, max_length=6000)
+    fecha: str | None = Field(default=None, max_length=10)
+    relacion: str | None = Field(default=None, max_length=120)
+    necesidades: list[str] = Field(default_factory=list, max_length=10)
+    evidencias: str | None = Field(default=None, max_length=2500)
+    consentimiento: bool
+
+    @field_validator("alias", "localidad", "relacion", "evidencias", mode="before")
+    @classmethod
+    def clean_optional_text(cls, value):
+        if value is None:
+            return None
+        value = re.sub(r"[\x00-\x08\x0B\x0C\x0E-\x1F]", "", str(value)).strip()
+        return value or None
+
+    @field_validator("relato", "departamento", mode="before")
+    @classmethod
+    def clean_required_text(cls, value):
+        return re.sub(r"[\x00-\x08\x0B\x0C\x0E-\x1F]", "", str(value)).strip()
+
+
+def init_db():
+    DB_PATH.parent.mkdir(parents=True, exist_ok=True)
+    with sqlite3.connect(DB_PATH) as conn:
+        conn.execute(
+            """
+            CREATE TABLE IF NOT EXISTS reportes (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                codigo TEXT NOT NULL UNIQUE,
+                creado_utc TEXT NOT NULL,
+                payload_cifrado BLOB NOT NULL
+            )
+            """
+        )
+        conn.commit()
+
+
+@app.on_event("startup")
+def on_startup():
+    init_db()
+
+
+@app.middleware("http")
+async def security_headers(request: Request, call_next):
+    response = await call_next(request)
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    response.headers["X-Frame-Options"] = "DENY"
+    response.headers["Referrer-Policy"] = "no-referrer"
+    response.headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
+    response.headers["Cache-Control"] = "no-store" if request.url.path.startswith("/api/") else "no-cache"
+    response.headers["Content-Security-Policy"] = "default-src 'self'; style-src 'self'; script-src 'self'; img-src 'self' data:; connect-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'"
+    return response
+
+
+@app.post("/api/reportes")
+def crear_reporte(reporte: Reporte):
+    if not reporte.consentimiento:
+        raise HTTPException(status_code=400, detail="Debes confirmar el aviso de demostración.")
+
+    codigo = f"VS-{datetime.now(timezone.utc).strftime('%Y%m%d')}-{secrets.token_hex(3).upper()}"
+    payload = reporte.model_dump()
+    payload["recibido_utc"] = datetime.now(timezone.utc).isoformat()
+    encrypted = fernet.encrypt(json.dumps(payload, ensure_ascii=False).encode("utf-8"))
+
+    with sqlite3.connect(DB_PATH) as conn:
+        conn.execute(
+            "INSERT INTO reportes (codigo, creado_utc, payload_cifrado) VALUES (?, ?, ?)",
+            (codigo, datetime.now(timezone.utc).isoformat(), encrypted),
+        )
+        conn.commit()
+
+    return {"ok": True, "codigo": codigo, "oficial": False}
+
+
+@app.get("/api/salud")
+def salud():
+    return {"ok": True, "servicio": "Vivir Segura"}
+
+
+app.mount("/static", StaticFiles(directory=BASE_DIR), name="static")
+
+@app.get("/")
+def index():
+    return FileResponse(BASE_DIR / "index.html")
+
+@app.get("/{path:path}")
+def static_files(path: str):
+    candidate = (BASE_DIR / path).resolve()
+    if BASE_DIR not in candidate.parents and candidate != BASE_DIR:
+        raise HTTPException(status_code=404)
+    if candidate.exists() and candidate.is_file():
+        return FileResponse(candidate)
+    return FileResponse(BASE_DIR / "index.html")
